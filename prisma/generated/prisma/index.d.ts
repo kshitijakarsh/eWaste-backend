@@ -23,6 +23,11 @@ export type Users = $Result.DefaultSelection<Prisma.$UsersPayload>
  * 
  */
 export type Admin = $Result.DefaultSelection<Prisma.$AdminPayload>
+/**
+ * Model Submissions
+ * 
+ */
+export type Submissions = $Result.DefaultSelection<Prisma.$SubmissionsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -169,6 +174,16 @@ export class PrismaClient<
     * ```
     */
   get admin(): Prisma.AdminDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.submissions`: Exposes CRUD operations for the **Submissions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Submissions
+    * const submissions = await prisma.submissions.findMany()
+    * ```
+    */
+  get submissions(): Prisma.SubmissionsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -610,7 +625,8 @@ export namespace Prisma {
 
   export const ModelName: {
     Users: 'Users',
-    Admin: 'Admin'
+    Admin: 'Admin',
+    Submissions: 'Submissions'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -629,7 +645,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "users" | "admin"
+      modelProps: "users" | "admin" | "submissions"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -781,6 +797,80 @@ export namespace Prisma {
           }
         }
       }
+      Submissions: {
+        payload: Prisma.$SubmissionsPayload<ExtArgs>
+        fields: Prisma.SubmissionsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SubmissionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SubmissionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload>
+          }
+          findFirst: {
+            args: Prisma.SubmissionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SubmissionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload>
+          }
+          findMany: {
+            args: Prisma.SubmissionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload>[]
+          }
+          create: {
+            args: Prisma.SubmissionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload>
+          }
+          createMany: {
+            args: Prisma.SubmissionsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SubmissionsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload>[]
+          }
+          delete: {
+            args: Prisma.SubmissionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload>
+          }
+          update: {
+            args: Prisma.SubmissionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload>
+          }
+          deleteMany: {
+            args: Prisma.SubmissionsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SubmissionsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SubmissionsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload>[]
+          }
+          upsert: {
+            args: Prisma.SubmissionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SubmissionsPayload>
+          }
+          aggregate: {
+            args: Prisma.SubmissionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSubmissions>
+          }
+          groupBy: {
+            args: Prisma.SubmissionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SubmissionsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SubmissionsCountArgs<ExtArgs>
+            result: $Utils.Optional<SubmissionsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -867,6 +957,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     users?: UsersOmit
     admin?: AdminOmit
+    submissions?: SubmissionsOmit
   }
 
   /* Types for Logging */
@@ -956,6 +1047,67 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UsersCountOutputType
+   */
+
+  export type UsersCountOutputType = {
+    submission: number
+  }
+
+  export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    submission?: boolean | UsersCountOutputTypeCountSubmissionArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsersCountOutputType
+     */
+    select?: UsersCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountSubmissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubmissionsWhereInput
+  }
+
+
+  /**
+   * Count Type AdminCountOutputType
+   */
+
+  export type AdminCountOutputType = {
+    submissions: number
+  }
+
+  export type AdminCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    submissions?: boolean | AdminCountOutputTypeCountSubmissionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminCountOutputType
+     */
+    select?: AdminCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeCountSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubmissionsWhereInput
+  }
+
 
   /**
    * Models
@@ -975,10 +1127,12 @@ export namespace Prisma {
 
   export type UsersAvgAggregateOutputType = {
     id: number | null
+    eco_points: number | null
   }
 
   export type UsersSumAggregateOutputType = {
     id: number | null
+    eco_points: number | null
   }
 
   export type UsersMinAggregateOutputType = {
@@ -986,6 +1140,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     password: string | null
+    eco_points: number | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -993,6 +1148,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     password: string | null
+    eco_points: number | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -1000,16 +1156,19 @@ export namespace Prisma {
     name: number
     email: number
     password: number
+    eco_points: number
     _all: number
   }
 
 
   export type UsersAvgAggregateInputType = {
     id?: true
+    eco_points?: true
   }
 
   export type UsersSumAggregateInputType = {
     id?: true
+    eco_points?: true
   }
 
   export type UsersMinAggregateInputType = {
@@ -1017,6 +1176,7 @@ export namespace Prisma {
     name?: true
     email?: true
     password?: true
+    eco_points?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -1024,6 +1184,7 @@ export namespace Prisma {
     name?: true
     email?: true
     password?: true
+    eco_points?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -1031,6 +1192,7 @@ export namespace Prisma {
     name?: true
     email?: true
     password?: true
+    eco_points?: true
     _all?: true
   }
 
@@ -1125,6 +1287,7 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    eco_points: number
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
     _sum: UsersSumAggregateOutputType | null
@@ -1151,6 +1314,9 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
+    eco_points?: boolean
+    submission?: boolean | Users$submissionArgs<ExtArgs>
+    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
   export type UsersSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1158,6 +1324,7 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
+    eco_points?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type UsersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1165,6 +1332,7 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
+    eco_points?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type UsersSelectScalar = {
@@ -1172,18 +1340,28 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
+    eco_points?: boolean
   }
 
-  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password", ExtArgs["result"]["users"]>
+  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "eco_points", ExtArgs["result"]["users"]>
+  export type UsersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    submission?: boolean | Users$submissionArgs<ExtArgs>
+    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UsersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UsersIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UsersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Users"
-    objects: {}
+    objects: {
+      submission: Prisma.$SubmissionsPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
       email: string
       password: string
+      eco_points: number
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -1578,6 +1756,7 @@ export namespace Prisma {
    */
   export interface Prisma__UsersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    submission<T extends Users$submissionArgs<ExtArgs> = {}>(args?: Subset<T, Users$submissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1611,6 +1790,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Users", 'String'>
     readonly email: FieldRef<"Users", 'String'>
     readonly password: FieldRef<"Users", 'String'>
+    readonly eco_points: FieldRef<"Users", 'Int'>
   }
     
 
@@ -1627,6 +1807,10 @@ export namespace Prisma {
      * Omit specific fields from the Users
      */
     omit?: UsersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
     /**
      * Filter, which Users to fetch.
      */
@@ -1646,6 +1830,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where: UsersWhereUniqueInput
@@ -1663,6 +1851,10 @@ export namespace Prisma {
      * Omit specific fields from the Users
      */
     omit?: UsersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
     /**
      * Filter, which Users to fetch.
      */
@@ -1712,6 +1904,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UsersWhereInput
@@ -1760,6 +1956,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UsersWhereInput
@@ -1802,6 +2002,10 @@ export namespace Prisma {
      * Omit specific fields from the Users
      */
     omit?: UsersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
     /**
      * The data needed to create a Users.
      */
@@ -1850,6 +2054,10 @@ export namespace Prisma {
      * Omit specific fields from the Users
      */
     omit?: UsersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
     /**
      * The data needed to update a Users.
      */
@@ -1917,6 +2125,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * The filter to search for the Users to update in case it exists.
      */
     where: UsersWhereUniqueInput
@@ -1943,6 +2155,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * Filter which Users to delete.
      */
     where: UsersWhereUniqueInput
@@ -1963,6 +2179,30 @@ export namespace Prisma {
   }
 
   /**
+   * Users.submission
+   */
+  export type Users$submissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    where?: SubmissionsWhereInput
+    orderBy?: SubmissionsOrderByWithRelationInput | SubmissionsOrderByWithRelationInput[]
+    cursor?: SubmissionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SubmissionsScalarFieldEnum | SubmissionsScalarFieldEnum[]
+  }
+
+  /**
    * Users without action
    */
   export type UsersDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1974,6 +2214,10 @@ export namespace Prisma {
      * Omit specific fields from the Users
      */
     omit?: UsersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
   }
 
 
@@ -2167,6 +2411,8 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
+    submissions?: boolean | Admin$submissionsArgs<ExtArgs>
+    _count?: boolean | AdminCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["admin"]>
 
   export type AdminSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2191,10 +2437,18 @@ export namespace Prisma {
   }
 
   export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password", ExtArgs["result"]["admin"]>
+  export type AdminInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    submissions?: boolean | Admin$submissionsArgs<ExtArgs>
+    _count?: boolean | AdminCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AdminIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AdminIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Admin"
-    objects: {}
+    objects: {
+      submissions: Prisma.$SubmissionsPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -2594,6 +2848,7 @@ export namespace Prisma {
    */
   export interface Prisma__AdminClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    submissions<T extends Admin$submissionsArgs<ExtArgs> = {}>(args?: Subset<T, Admin$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2644,6 +2899,10 @@ export namespace Prisma {
      */
     omit?: AdminOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * Filter, which Admin to fetch.
      */
     where: AdminWhereUniqueInput
@@ -2662,6 +2921,10 @@ export namespace Prisma {
      */
     omit?: AdminOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * Filter, which Admin to fetch.
      */
     where: AdminWhereUniqueInput
@@ -2679,6 +2942,10 @@ export namespace Prisma {
      * Omit specific fields from the Admin
      */
     omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
     /**
      * Filter, which Admin to fetch.
      */
@@ -2728,6 +2995,10 @@ export namespace Prisma {
      */
     omit?: AdminOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * Filter, which Admin to fetch.
      */
     where?: AdminWhereInput
@@ -2776,6 +3047,10 @@ export namespace Prisma {
      */
     omit?: AdminOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * Filter, which Admins to fetch.
      */
     where?: AdminWhereInput
@@ -2818,6 +3093,10 @@ export namespace Prisma {
      * Omit specific fields from the Admin
      */
     omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
     /**
      * The data needed to create a Admin.
      */
@@ -2866,6 +3145,10 @@ export namespace Prisma {
      * Omit specific fields from the Admin
      */
     omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
     /**
      * The data needed to update a Admin.
      */
@@ -2933,6 +3216,10 @@ export namespace Prisma {
      */
     omit?: AdminOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * The filter to search for the Admin to update in case it exists.
      */
     where: AdminWhereUniqueInput
@@ -2959,6 +3246,10 @@ export namespace Prisma {
      */
     omit?: AdminOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * Filter which Admin to delete.
      */
     where: AdminWhereUniqueInput
@@ -2979,6 +3270,30 @@ export namespace Prisma {
   }
 
   /**
+   * Admin.submissions
+   */
+  export type Admin$submissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    where?: SubmissionsWhereInput
+    orderBy?: SubmissionsOrderByWithRelationInput | SubmissionsOrderByWithRelationInput[]
+    cursor?: SubmissionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SubmissionsScalarFieldEnum | SubmissionsScalarFieldEnum[]
+  }
+
+  /**
    * Admin without action
    */
   export type AdminDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2990,6 +3305,1150 @@ export namespace Prisma {
      * Omit specific fields from the Admin
      */
     omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Submissions
+   */
+
+  export type AggregateSubmissions = {
+    _count: SubmissionsCountAggregateOutputType | null
+    _avg: SubmissionsAvgAggregateOutputType | null
+    _sum: SubmissionsSumAggregateOutputType | null
+    _min: SubmissionsMinAggregateOutputType | null
+    _max: SubmissionsMaxAggregateOutputType | null
+  }
+
+  export type SubmissionsAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    adminId: number | null
+  }
+
+  export type SubmissionsSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    adminId: number | null
+  }
+
+  export type SubmissionsMinAggregateOutputType = {
+    id: number | null
+    itemType: string | null
+    userId: number | null
+    adminId: number | null
+    status: string | null
+    submittedAt: Date | null
+  }
+
+  export type SubmissionsMaxAggregateOutputType = {
+    id: number | null
+    itemType: string | null
+    userId: number | null
+    adminId: number | null
+    status: string | null
+    submittedAt: Date | null
+  }
+
+  export type SubmissionsCountAggregateOutputType = {
+    id: number
+    itemType: number
+    userId: number
+    adminId: number
+    status: number
+    submittedAt: number
+    _all: number
+  }
+
+
+  export type SubmissionsAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    adminId?: true
+  }
+
+  export type SubmissionsSumAggregateInputType = {
+    id?: true
+    userId?: true
+    adminId?: true
+  }
+
+  export type SubmissionsMinAggregateInputType = {
+    id?: true
+    itemType?: true
+    userId?: true
+    adminId?: true
+    status?: true
+    submittedAt?: true
+  }
+
+  export type SubmissionsMaxAggregateInputType = {
+    id?: true
+    itemType?: true
+    userId?: true
+    adminId?: true
+    status?: true
+    submittedAt?: true
+  }
+
+  export type SubmissionsCountAggregateInputType = {
+    id?: true
+    itemType?: true
+    userId?: true
+    adminId?: true
+    status?: true
+    submittedAt?: true
+    _all?: true
+  }
+
+  export type SubmissionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Submissions to aggregate.
+     */
+    where?: SubmissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Submissions to fetch.
+     */
+    orderBy?: SubmissionsOrderByWithRelationInput | SubmissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SubmissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Submissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Submissions
+    **/
+    _count?: true | SubmissionsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SubmissionsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SubmissionsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SubmissionsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SubmissionsMaxAggregateInputType
+  }
+
+  export type GetSubmissionsAggregateType<T extends SubmissionsAggregateArgs> = {
+        [P in keyof T & keyof AggregateSubmissions]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSubmissions[P]>
+      : GetScalarType<T[P], AggregateSubmissions[P]>
+  }
+
+
+
+
+  export type SubmissionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SubmissionsWhereInput
+    orderBy?: SubmissionsOrderByWithAggregationInput | SubmissionsOrderByWithAggregationInput[]
+    by: SubmissionsScalarFieldEnum[] | SubmissionsScalarFieldEnum
+    having?: SubmissionsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SubmissionsCountAggregateInputType | true
+    _avg?: SubmissionsAvgAggregateInputType
+    _sum?: SubmissionsSumAggregateInputType
+    _min?: SubmissionsMinAggregateInputType
+    _max?: SubmissionsMaxAggregateInputType
+  }
+
+  export type SubmissionsGroupByOutputType = {
+    id: number
+    itemType: string
+    userId: number
+    adminId: number | null
+    status: string
+    submittedAt: Date
+    _count: SubmissionsCountAggregateOutputType | null
+    _avg: SubmissionsAvgAggregateOutputType | null
+    _sum: SubmissionsSumAggregateOutputType | null
+    _min: SubmissionsMinAggregateOutputType | null
+    _max: SubmissionsMaxAggregateOutputType | null
+  }
+
+  type GetSubmissionsGroupByPayload<T extends SubmissionsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SubmissionsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SubmissionsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SubmissionsGroupByOutputType[P]>
+            : GetScalarType<T[P], SubmissionsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SubmissionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    itemType?: boolean
+    userId?: boolean
+    adminId?: boolean
+    status?: boolean
+    submittedAt?: boolean
+    user?: boolean | UsersDefaultArgs<ExtArgs>
+    admin?: boolean | Submissions$adminArgs<ExtArgs>
+  }, ExtArgs["result"]["submissions"]>
+
+  export type SubmissionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    itemType?: boolean
+    userId?: boolean
+    adminId?: boolean
+    status?: boolean
+    submittedAt?: boolean
+    user?: boolean | UsersDefaultArgs<ExtArgs>
+    admin?: boolean | Submissions$adminArgs<ExtArgs>
+  }, ExtArgs["result"]["submissions"]>
+
+  export type SubmissionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    itemType?: boolean
+    userId?: boolean
+    adminId?: boolean
+    status?: boolean
+    submittedAt?: boolean
+    user?: boolean | UsersDefaultArgs<ExtArgs>
+    admin?: boolean | Submissions$adminArgs<ExtArgs>
+  }, ExtArgs["result"]["submissions"]>
+
+  export type SubmissionsSelectScalar = {
+    id?: boolean
+    itemType?: boolean
+    userId?: boolean
+    adminId?: boolean
+    status?: boolean
+    submittedAt?: boolean
+  }
+
+  export type SubmissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "itemType" | "userId" | "adminId" | "status" | "submittedAt", ExtArgs["result"]["submissions"]>
+  export type SubmissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UsersDefaultArgs<ExtArgs>
+    admin?: boolean | Submissions$adminArgs<ExtArgs>
+  }
+  export type SubmissionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UsersDefaultArgs<ExtArgs>
+    admin?: boolean | Submissions$adminArgs<ExtArgs>
+  }
+  export type SubmissionsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UsersDefaultArgs<ExtArgs>
+    admin?: boolean | Submissions$adminArgs<ExtArgs>
+  }
+
+  export type $SubmissionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Submissions"
+    objects: {
+      user: Prisma.$UsersPayload<ExtArgs>
+      admin: Prisma.$AdminPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      itemType: string
+      userId: number
+      adminId: number | null
+      status: string
+      submittedAt: Date
+    }, ExtArgs["result"]["submissions"]>
+    composites: {}
+  }
+
+  type SubmissionsGetPayload<S extends boolean | null | undefined | SubmissionsDefaultArgs> = $Result.GetResult<Prisma.$SubmissionsPayload, S>
+
+  type SubmissionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SubmissionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SubmissionsCountAggregateInputType | true
+    }
+
+  export interface SubmissionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Submissions'], meta: { name: 'Submissions' } }
+    /**
+     * Find zero or one Submissions that matches the filter.
+     * @param {SubmissionsFindUniqueArgs} args - Arguments to find a Submissions
+     * @example
+     * // Get one Submissions
+     * const submissions = await prisma.submissions.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SubmissionsFindUniqueArgs>(args: SelectSubset<T, SubmissionsFindUniqueArgs<ExtArgs>>): Prisma__SubmissionsClient<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Submissions that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SubmissionsFindUniqueOrThrowArgs} args - Arguments to find a Submissions
+     * @example
+     * // Get one Submissions
+     * const submissions = await prisma.submissions.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SubmissionsFindUniqueOrThrowArgs>(args: SelectSubset<T, SubmissionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SubmissionsClient<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Submissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionsFindFirstArgs} args - Arguments to find a Submissions
+     * @example
+     * // Get one Submissions
+     * const submissions = await prisma.submissions.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SubmissionsFindFirstArgs>(args?: SelectSubset<T, SubmissionsFindFirstArgs<ExtArgs>>): Prisma__SubmissionsClient<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Submissions that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionsFindFirstOrThrowArgs} args - Arguments to find a Submissions
+     * @example
+     * // Get one Submissions
+     * const submissions = await prisma.submissions.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SubmissionsFindFirstOrThrowArgs>(args?: SelectSubset<T, SubmissionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__SubmissionsClient<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Submissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Submissions
+     * const submissions = await prisma.submissions.findMany()
+     * 
+     * // Get first 10 Submissions
+     * const submissions = await prisma.submissions.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const submissionsWithIdOnly = await prisma.submissions.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SubmissionsFindManyArgs>(args?: SelectSubset<T, SubmissionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Submissions.
+     * @param {SubmissionsCreateArgs} args - Arguments to create a Submissions.
+     * @example
+     * // Create one Submissions
+     * const Submissions = await prisma.submissions.create({
+     *   data: {
+     *     // ... data to create a Submissions
+     *   }
+     * })
+     * 
+     */
+    create<T extends SubmissionsCreateArgs>(args: SelectSubset<T, SubmissionsCreateArgs<ExtArgs>>): Prisma__SubmissionsClient<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Submissions.
+     * @param {SubmissionsCreateManyArgs} args - Arguments to create many Submissions.
+     * @example
+     * // Create many Submissions
+     * const submissions = await prisma.submissions.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SubmissionsCreateManyArgs>(args?: SelectSubset<T, SubmissionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Submissions and returns the data saved in the database.
+     * @param {SubmissionsCreateManyAndReturnArgs} args - Arguments to create many Submissions.
+     * @example
+     * // Create many Submissions
+     * const submissions = await prisma.submissions.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Submissions and only return the `id`
+     * const submissionsWithIdOnly = await prisma.submissions.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SubmissionsCreateManyAndReturnArgs>(args?: SelectSubset<T, SubmissionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Submissions.
+     * @param {SubmissionsDeleteArgs} args - Arguments to delete one Submissions.
+     * @example
+     * // Delete one Submissions
+     * const Submissions = await prisma.submissions.delete({
+     *   where: {
+     *     // ... filter to delete one Submissions
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SubmissionsDeleteArgs>(args: SelectSubset<T, SubmissionsDeleteArgs<ExtArgs>>): Prisma__SubmissionsClient<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Submissions.
+     * @param {SubmissionsUpdateArgs} args - Arguments to update one Submissions.
+     * @example
+     * // Update one Submissions
+     * const submissions = await prisma.submissions.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SubmissionsUpdateArgs>(args: SelectSubset<T, SubmissionsUpdateArgs<ExtArgs>>): Prisma__SubmissionsClient<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Submissions.
+     * @param {SubmissionsDeleteManyArgs} args - Arguments to filter Submissions to delete.
+     * @example
+     * // Delete a few Submissions
+     * const { count } = await prisma.submissions.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SubmissionsDeleteManyArgs>(args?: SelectSubset<T, SubmissionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Submissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Submissions
+     * const submissions = await prisma.submissions.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SubmissionsUpdateManyArgs>(args: SelectSubset<T, SubmissionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Submissions and returns the data updated in the database.
+     * @param {SubmissionsUpdateManyAndReturnArgs} args - Arguments to update many Submissions.
+     * @example
+     * // Update many Submissions
+     * const submissions = await prisma.submissions.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Submissions and only return the `id`
+     * const submissionsWithIdOnly = await prisma.submissions.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SubmissionsUpdateManyAndReturnArgs>(args: SelectSubset<T, SubmissionsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Submissions.
+     * @param {SubmissionsUpsertArgs} args - Arguments to update or create a Submissions.
+     * @example
+     * // Update or create a Submissions
+     * const submissions = await prisma.submissions.upsert({
+     *   create: {
+     *     // ... data to create a Submissions
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Submissions we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SubmissionsUpsertArgs>(args: SelectSubset<T, SubmissionsUpsertArgs<ExtArgs>>): Prisma__SubmissionsClient<$Result.GetResult<Prisma.$SubmissionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Submissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionsCountArgs} args - Arguments to filter Submissions to count.
+     * @example
+     * // Count the number of Submissions
+     * const count = await prisma.submissions.count({
+     *   where: {
+     *     // ... the filter for the Submissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends SubmissionsCountArgs>(
+      args?: Subset<T, SubmissionsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SubmissionsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Submissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SubmissionsAggregateArgs>(args: Subset<T, SubmissionsAggregateArgs>): Prisma.PrismaPromise<GetSubmissionsAggregateType<T>>
+
+    /**
+     * Group by Submissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubmissionsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SubmissionsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SubmissionsGroupByArgs['orderBy'] }
+        : { orderBy?: SubmissionsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SubmissionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSubmissionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Submissions model
+   */
+  readonly fields: SubmissionsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Submissions.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SubmissionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    admin<T extends Submissions$adminArgs<ExtArgs> = {}>(args?: Subset<T, Submissions$adminArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Submissions model
+   */
+  interface SubmissionsFieldRefs {
+    readonly id: FieldRef<"Submissions", 'Int'>
+    readonly itemType: FieldRef<"Submissions", 'String'>
+    readonly userId: FieldRef<"Submissions", 'Int'>
+    readonly adminId: FieldRef<"Submissions", 'Int'>
+    readonly status: FieldRef<"Submissions", 'String'>
+    readonly submittedAt: FieldRef<"Submissions", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Submissions findUnique
+   */
+  export type SubmissionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which Submissions to fetch.
+     */
+    where: SubmissionsWhereUniqueInput
+  }
+
+  /**
+   * Submissions findUniqueOrThrow
+   */
+  export type SubmissionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which Submissions to fetch.
+     */
+    where: SubmissionsWhereUniqueInput
+  }
+
+  /**
+   * Submissions findFirst
+   */
+  export type SubmissionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which Submissions to fetch.
+     */
+    where?: SubmissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Submissions to fetch.
+     */
+    orderBy?: SubmissionsOrderByWithRelationInput | SubmissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Submissions.
+     */
+    cursor?: SubmissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Submissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Submissions.
+     */
+    distinct?: SubmissionsScalarFieldEnum | SubmissionsScalarFieldEnum[]
+  }
+
+  /**
+   * Submissions findFirstOrThrow
+   */
+  export type SubmissionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which Submissions to fetch.
+     */
+    where?: SubmissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Submissions to fetch.
+     */
+    orderBy?: SubmissionsOrderByWithRelationInput | SubmissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Submissions.
+     */
+    cursor?: SubmissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Submissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Submissions.
+     */
+    distinct?: SubmissionsScalarFieldEnum | SubmissionsScalarFieldEnum[]
+  }
+
+  /**
+   * Submissions findMany
+   */
+  export type SubmissionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which Submissions to fetch.
+     */
+    where?: SubmissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Submissions to fetch.
+     */
+    orderBy?: SubmissionsOrderByWithRelationInput | SubmissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Submissions.
+     */
+    cursor?: SubmissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Submissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Submissions.
+     */
+    skip?: number
+    distinct?: SubmissionsScalarFieldEnum | SubmissionsScalarFieldEnum[]
+  }
+
+  /**
+   * Submissions create
+   */
+  export type SubmissionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Submissions.
+     */
+    data: XOR<SubmissionsCreateInput, SubmissionsUncheckedCreateInput>
+  }
+
+  /**
+   * Submissions createMany
+   */
+  export type SubmissionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Submissions.
+     */
+    data: SubmissionsCreateManyInput | SubmissionsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Submissions createManyAndReturn
+   */
+  export type SubmissionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * The data used to create many Submissions.
+     */
+    data: SubmissionsCreateManyInput | SubmissionsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Submissions update
+   */
+  export type SubmissionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Submissions.
+     */
+    data: XOR<SubmissionsUpdateInput, SubmissionsUncheckedUpdateInput>
+    /**
+     * Choose, which Submissions to update.
+     */
+    where: SubmissionsWhereUniqueInput
+  }
+
+  /**
+   * Submissions updateMany
+   */
+  export type SubmissionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Submissions.
+     */
+    data: XOR<SubmissionsUpdateManyMutationInput, SubmissionsUncheckedUpdateManyInput>
+    /**
+     * Filter which Submissions to update
+     */
+    where?: SubmissionsWhereInput
+    /**
+     * Limit how many Submissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Submissions updateManyAndReturn
+   */
+  export type SubmissionsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * The data used to update Submissions.
+     */
+    data: XOR<SubmissionsUpdateManyMutationInput, SubmissionsUncheckedUpdateManyInput>
+    /**
+     * Filter which Submissions to update
+     */
+    where?: SubmissionsWhereInput
+    /**
+     * Limit how many Submissions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Submissions upsert
+   */
+  export type SubmissionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Submissions to update in case it exists.
+     */
+    where: SubmissionsWhereUniqueInput
+    /**
+     * In case the Submissions found by the `where` argument doesn't exist, create a new Submissions with this data.
+     */
+    create: XOR<SubmissionsCreateInput, SubmissionsUncheckedCreateInput>
+    /**
+     * In case the Submissions was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SubmissionsUpdateInput, SubmissionsUncheckedUpdateInput>
+  }
+
+  /**
+   * Submissions delete
+   */
+  export type SubmissionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
+    /**
+     * Filter which Submissions to delete.
+     */
+    where: SubmissionsWhereUniqueInput
+  }
+
+  /**
+   * Submissions deleteMany
+   */
+  export type SubmissionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Submissions to delete
+     */
+    where?: SubmissionsWhereInput
+    /**
+     * Limit how many Submissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Submissions.admin
+   */
+  export type Submissions$adminArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    where?: AdminWhereInput
+  }
+
+  /**
+   * Submissions without action
+   */
+  export type SubmissionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Submissions
+     */
+    select?: SubmissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Submissions
+     */
+    omit?: SubmissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubmissionsInclude<ExtArgs> | null
   }
 
 
@@ -3011,7 +4470,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     email: 'email',
-    password: 'password'
+    password: 'password',
+    eco_points: 'eco_points'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -3025,6 +4485,18 @@ export namespace Prisma {
   };
 
   export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+  export const SubmissionsScalarFieldEnum: {
+    id: 'id',
+    itemType: 'itemType',
+    userId: 'userId',
+    adminId: 'adminId',
+    status: 'status',
+    submittedAt: 'submittedAt'
+  };
+
+  export type SubmissionsScalarFieldEnum = (typeof SubmissionsScalarFieldEnum)[keyof typeof SubmissionsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3041,6 +4513,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -3077,6 +4557,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -3101,6 +4595,8 @@ export namespace Prisma {
     name?: StringFilter<"Users"> | string
     email?: StringFilter<"Users"> | string
     password?: StringFilter<"Users"> | string
+    eco_points?: IntFilter<"Users"> | number
+    submission?: SubmissionsListRelationFilter
   }
 
   export type UsersOrderByWithRelationInput = {
@@ -3108,6 +4604,8 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    eco_points?: SortOrder
+    submission?: SubmissionsOrderByRelationAggregateInput
   }
 
   export type UsersWhereUniqueInput = Prisma.AtLeast<{
@@ -3118,6 +4616,8 @@ export namespace Prisma {
     NOT?: UsersWhereInput | UsersWhereInput[]
     name?: StringFilter<"Users"> | string
     password?: StringFilter<"Users"> | string
+    eco_points?: IntFilter<"Users"> | number
+    submission?: SubmissionsListRelationFilter
   }, "id" | "email">
 
   export type UsersOrderByWithAggregationInput = {
@@ -3125,6 +4625,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    eco_points?: SortOrder
     _count?: UsersCountOrderByAggregateInput
     _avg?: UsersAvgOrderByAggregateInput
     _max?: UsersMaxOrderByAggregateInput
@@ -3140,6 +4641,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Users"> | string
     email?: StringWithAggregatesFilter<"Users"> | string
     password?: StringWithAggregatesFilter<"Users"> | string
+    eco_points?: IntWithAggregatesFilter<"Users"> | number
   }
 
   export type AdminWhereInput = {
@@ -3150,6 +4652,7 @@ export namespace Prisma {
     name?: StringFilter<"Admin"> | string
     email?: StringFilter<"Admin"> | string
     password?: StringFilter<"Admin"> | string
+    submissions?: SubmissionsListRelationFilter
   }
 
   export type AdminOrderByWithRelationInput = {
@@ -3157,6 +4660,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    submissions?: SubmissionsOrderByRelationAggregateInput
   }
 
   export type AdminWhereUniqueInput = Prisma.AtLeast<{
@@ -3167,6 +4671,7 @@ export namespace Prisma {
     NOT?: AdminWhereInput | AdminWhereInput[]
     name?: StringFilter<"Admin"> | string
     password?: StringFilter<"Admin"> | string
+    submissions?: SubmissionsListRelationFilter
   }, "id" | "email">
 
   export type AdminOrderByWithAggregationInput = {
@@ -3191,10 +4696,77 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"Admin"> | string
   }
 
+  export type SubmissionsWhereInput = {
+    AND?: SubmissionsWhereInput | SubmissionsWhereInput[]
+    OR?: SubmissionsWhereInput[]
+    NOT?: SubmissionsWhereInput | SubmissionsWhereInput[]
+    id?: IntFilter<"Submissions"> | number
+    itemType?: StringFilter<"Submissions"> | string
+    userId?: IntFilter<"Submissions"> | number
+    adminId?: IntNullableFilter<"Submissions"> | number | null
+    status?: StringFilter<"Submissions"> | string
+    submittedAt?: DateTimeFilter<"Submissions"> | Date | string
+    user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+    admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
+  }
+
+  export type SubmissionsOrderByWithRelationInput = {
+    id?: SortOrder
+    itemType?: SortOrder
+    userId?: SortOrder
+    adminId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    submittedAt?: SortOrder
+    user?: UsersOrderByWithRelationInput
+    admin?: AdminOrderByWithRelationInput
+  }
+
+  export type SubmissionsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: SubmissionsWhereInput | SubmissionsWhereInput[]
+    OR?: SubmissionsWhereInput[]
+    NOT?: SubmissionsWhereInput | SubmissionsWhereInput[]
+    itemType?: StringFilter<"Submissions"> | string
+    userId?: IntFilter<"Submissions"> | number
+    adminId?: IntNullableFilter<"Submissions"> | number | null
+    status?: StringFilter<"Submissions"> | string
+    submittedAt?: DateTimeFilter<"Submissions"> | Date | string
+    user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+    admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
+  }, "id">
+
+  export type SubmissionsOrderByWithAggregationInput = {
+    id?: SortOrder
+    itemType?: SortOrder
+    userId?: SortOrder
+    adminId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    submittedAt?: SortOrder
+    _count?: SubmissionsCountOrderByAggregateInput
+    _avg?: SubmissionsAvgOrderByAggregateInput
+    _max?: SubmissionsMaxOrderByAggregateInput
+    _min?: SubmissionsMinOrderByAggregateInput
+    _sum?: SubmissionsSumOrderByAggregateInput
+  }
+
+  export type SubmissionsScalarWhereWithAggregatesInput = {
+    AND?: SubmissionsScalarWhereWithAggregatesInput | SubmissionsScalarWhereWithAggregatesInput[]
+    OR?: SubmissionsScalarWhereWithAggregatesInput[]
+    NOT?: SubmissionsScalarWhereWithAggregatesInput | SubmissionsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Submissions"> | number
+    itemType?: StringWithAggregatesFilter<"Submissions"> | string
+    userId?: IntWithAggregatesFilter<"Submissions"> | number
+    adminId?: IntNullableWithAggregatesFilter<"Submissions"> | number | null
+    status?: StringWithAggregatesFilter<"Submissions"> | string
+    submittedAt?: DateTimeWithAggregatesFilter<"Submissions"> | Date | string
+  }
+
   export type UsersCreateInput = {
     name: string
     email: string
     password: string
+    eco_points?: number
+    submission?: SubmissionsCreateNestedManyWithoutUserInput
   }
 
   export type UsersUncheckedCreateInput = {
@@ -3202,12 +4774,16 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    eco_points?: number
+    submission?: SubmissionsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UsersUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    eco_points?: IntFieldUpdateOperationsInput | number
+    submission?: SubmissionsUpdateManyWithoutUserNestedInput
   }
 
   export type UsersUncheckedUpdateInput = {
@@ -3215,6 +4791,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    eco_points?: IntFieldUpdateOperationsInput | number
+    submission?: SubmissionsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UsersCreateManyInput = {
@@ -3222,12 +4800,14 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    eco_points?: number
   }
 
   export type UsersUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    eco_points?: IntFieldUpdateOperationsInput | number
   }
 
   export type UsersUncheckedUpdateManyInput = {
@@ -3235,12 +4815,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    eco_points?: IntFieldUpdateOperationsInput | number
   }
 
   export type AdminCreateInput = {
     name: string
     email: string
     password: string
+    submissions?: SubmissionsCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUncheckedCreateInput = {
@@ -3248,12 +4830,14 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    submissions?: SubmissionsUncheckedCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    submissions?: SubmissionsUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminUncheckedUpdateInput = {
@@ -3261,6 +4845,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    submissions?: SubmissionsUncheckedUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminCreateManyInput = {
@@ -3281,6 +4866,64 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubmissionsCreateInput = {
+    itemType: string
+    status?: string
+    submittedAt?: Date | string
+    user: UsersCreateNestedOneWithoutSubmissionInput
+    admin?: AdminCreateNestedOneWithoutSubmissionsInput
+  }
+
+  export type SubmissionsUncheckedCreateInput = {
+    id?: number
+    itemType: string
+    userId: number
+    adminId?: number | null
+    status?: string
+    submittedAt?: Date | string
+  }
+
+  export type SubmissionsUpdateInput = {
+    itemType?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UsersUpdateOneRequiredWithoutSubmissionNestedInput
+    admin?: AdminUpdateOneWithoutSubmissionsNestedInput
+  }
+
+  export type SubmissionsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    itemType?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    adminId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubmissionsCreateManyInput = {
+    id?: number
+    itemType: string
+    userId: number
+    adminId?: number | null
+    status?: string
+    submittedAt?: Date | string
+  }
+
+  export type SubmissionsUpdateManyMutationInput = {
+    itemType?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubmissionsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    itemType?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    adminId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3309,15 +4952,27 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type SubmissionsListRelationFilter = {
+    every?: SubmissionsWhereInput
+    some?: SubmissionsWhereInput
+    none?: SubmissionsWhereInput
+  }
+
+  export type SubmissionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UsersCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    eco_points?: SortOrder
   }
 
   export type UsersAvgOrderByAggregateInput = {
     id?: SortOrder
+    eco_points?: SortOrder
   }
 
   export type UsersMaxOrderByAggregateInput = {
@@ -3325,6 +4980,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    eco_points?: SortOrder
   }
 
   export type UsersMinOrderByAggregateInput = {
@@ -3332,10 +4988,12 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    eco_points?: SortOrder
   }
 
   export type UsersSumOrderByAggregateInput = {
     id?: SortOrder
+    eco_points?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -3401,12 +5059,244 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type UsersScalarRelationFilter = {
+    is?: UsersWhereInput
+    isNot?: UsersWhereInput
+  }
+
+  export type AdminNullableScalarRelationFilter = {
+    is?: AdminWhereInput | null
+    isNot?: AdminWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type SubmissionsCountOrderByAggregateInput = {
+    id?: SortOrder
+    itemType?: SortOrder
+    userId?: SortOrder
+    adminId?: SortOrder
+    status?: SortOrder
+    submittedAt?: SortOrder
+  }
+
+  export type SubmissionsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    adminId?: SortOrder
+  }
+
+  export type SubmissionsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    itemType?: SortOrder
+    userId?: SortOrder
+    adminId?: SortOrder
+    status?: SortOrder
+    submittedAt?: SortOrder
+  }
+
+  export type SubmissionsMinOrderByAggregateInput = {
+    id?: SortOrder
+    itemType?: SortOrder
+    userId?: SortOrder
+    adminId?: SortOrder
+    status?: SortOrder
+    submittedAt?: SortOrder
+  }
+
+  export type SubmissionsSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    adminId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type SubmissionsCreateNestedManyWithoutUserInput = {
+    create?: XOR<SubmissionsCreateWithoutUserInput, SubmissionsUncheckedCreateWithoutUserInput> | SubmissionsCreateWithoutUserInput[] | SubmissionsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SubmissionsCreateOrConnectWithoutUserInput | SubmissionsCreateOrConnectWithoutUserInput[]
+    createMany?: SubmissionsCreateManyUserInputEnvelope
+    connect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+  }
+
+  export type SubmissionsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SubmissionsCreateWithoutUserInput, SubmissionsUncheckedCreateWithoutUserInput> | SubmissionsCreateWithoutUserInput[] | SubmissionsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SubmissionsCreateOrConnectWithoutUserInput | SubmissionsCreateOrConnectWithoutUserInput[]
+    createMany?: SubmissionsCreateManyUserInputEnvelope
+    connect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type IntFieldUpdateOperationsInput = {
     set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type SubmissionsUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SubmissionsCreateWithoutUserInput, SubmissionsUncheckedCreateWithoutUserInput> | SubmissionsCreateWithoutUserInput[] | SubmissionsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SubmissionsCreateOrConnectWithoutUserInput | SubmissionsCreateOrConnectWithoutUserInput[]
+    upsert?: SubmissionsUpsertWithWhereUniqueWithoutUserInput | SubmissionsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SubmissionsCreateManyUserInputEnvelope
+    set?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    disconnect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    delete?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    connect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    update?: SubmissionsUpdateWithWhereUniqueWithoutUserInput | SubmissionsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SubmissionsUpdateManyWithWhereWithoutUserInput | SubmissionsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SubmissionsScalarWhereInput | SubmissionsScalarWhereInput[]
+  }
+
+  export type SubmissionsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SubmissionsCreateWithoutUserInput, SubmissionsUncheckedCreateWithoutUserInput> | SubmissionsCreateWithoutUserInput[] | SubmissionsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SubmissionsCreateOrConnectWithoutUserInput | SubmissionsCreateOrConnectWithoutUserInput[]
+    upsert?: SubmissionsUpsertWithWhereUniqueWithoutUserInput | SubmissionsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SubmissionsCreateManyUserInputEnvelope
+    set?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    disconnect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    delete?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    connect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    update?: SubmissionsUpdateWithWhereUniqueWithoutUserInput | SubmissionsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SubmissionsUpdateManyWithWhereWithoutUserInput | SubmissionsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SubmissionsScalarWhereInput | SubmissionsScalarWhereInput[]
+  }
+
+  export type SubmissionsCreateNestedManyWithoutAdminInput = {
+    create?: XOR<SubmissionsCreateWithoutAdminInput, SubmissionsUncheckedCreateWithoutAdminInput> | SubmissionsCreateWithoutAdminInput[] | SubmissionsUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: SubmissionsCreateOrConnectWithoutAdminInput | SubmissionsCreateOrConnectWithoutAdminInput[]
+    createMany?: SubmissionsCreateManyAdminInputEnvelope
+    connect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+  }
+
+  export type SubmissionsUncheckedCreateNestedManyWithoutAdminInput = {
+    create?: XOR<SubmissionsCreateWithoutAdminInput, SubmissionsUncheckedCreateWithoutAdminInput> | SubmissionsCreateWithoutAdminInput[] | SubmissionsUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: SubmissionsCreateOrConnectWithoutAdminInput | SubmissionsCreateOrConnectWithoutAdminInput[]
+    createMany?: SubmissionsCreateManyAdminInputEnvelope
+    connect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+  }
+
+  export type SubmissionsUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<SubmissionsCreateWithoutAdminInput, SubmissionsUncheckedCreateWithoutAdminInput> | SubmissionsCreateWithoutAdminInput[] | SubmissionsUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: SubmissionsCreateOrConnectWithoutAdminInput | SubmissionsCreateOrConnectWithoutAdminInput[]
+    upsert?: SubmissionsUpsertWithWhereUniqueWithoutAdminInput | SubmissionsUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: SubmissionsCreateManyAdminInputEnvelope
+    set?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    disconnect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    delete?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    connect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    update?: SubmissionsUpdateWithWhereUniqueWithoutAdminInput | SubmissionsUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: SubmissionsUpdateManyWithWhereWithoutAdminInput | SubmissionsUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: SubmissionsScalarWhereInput | SubmissionsScalarWhereInput[]
+  }
+
+  export type SubmissionsUncheckedUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<SubmissionsCreateWithoutAdminInput, SubmissionsUncheckedCreateWithoutAdminInput> | SubmissionsCreateWithoutAdminInput[] | SubmissionsUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: SubmissionsCreateOrConnectWithoutAdminInput | SubmissionsCreateOrConnectWithoutAdminInput[]
+    upsert?: SubmissionsUpsertWithWhereUniqueWithoutAdminInput | SubmissionsUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: SubmissionsCreateManyAdminInputEnvelope
+    set?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    disconnect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    delete?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    connect?: SubmissionsWhereUniqueInput | SubmissionsWhereUniqueInput[]
+    update?: SubmissionsUpdateWithWhereUniqueWithoutAdminInput | SubmissionsUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: SubmissionsUpdateManyWithWhereWithoutAdminInput | SubmissionsUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: SubmissionsScalarWhereInput | SubmissionsScalarWhereInput[]
+  }
+
+  export type UsersCreateNestedOneWithoutSubmissionInput = {
+    create?: XOR<UsersCreateWithoutSubmissionInput, UsersUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutSubmissionInput
+    connect?: UsersWhereUniqueInput
+  }
+
+  export type AdminCreateNestedOneWithoutSubmissionsInput = {
+    create?: XOR<AdminCreateWithoutSubmissionsInput, AdminUncheckedCreateWithoutSubmissionsInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutSubmissionsInput
+    connect?: AdminWhereUniqueInput
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type UsersUpdateOneRequiredWithoutSubmissionNestedInput = {
+    create?: XOR<UsersCreateWithoutSubmissionInput, UsersUncheckedCreateWithoutSubmissionInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutSubmissionInput
+    upsert?: UsersUpsertWithoutSubmissionInput
+    connect?: UsersWhereUniqueInput
+    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutSubmissionInput, UsersUpdateWithoutSubmissionInput>, UsersUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type AdminUpdateOneWithoutSubmissionsNestedInput = {
+    create?: XOR<AdminCreateWithoutSubmissionsInput, AdminUncheckedCreateWithoutSubmissionsInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutSubmissionsInput
+    upsert?: AdminUpsertWithoutSubmissionsInput
+    disconnect?: AdminWhereInput | boolean
+    delete?: AdminWhereInput | boolean
+    connect?: AdminWhereUniqueInput
+    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutSubmissionsInput, AdminUpdateWithoutSubmissionsInput>, AdminUncheckedUpdateWithoutSubmissionsInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
@@ -3480,6 +5370,313 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type SubmissionsCreateWithoutUserInput = {
+    itemType: string
+    status?: string
+    submittedAt?: Date | string
+    admin?: AdminCreateNestedOneWithoutSubmissionsInput
+  }
+
+  export type SubmissionsUncheckedCreateWithoutUserInput = {
+    id?: number
+    itemType: string
+    adminId?: number | null
+    status?: string
+    submittedAt?: Date | string
+  }
+
+  export type SubmissionsCreateOrConnectWithoutUserInput = {
+    where: SubmissionsWhereUniqueInput
+    create: XOR<SubmissionsCreateWithoutUserInput, SubmissionsUncheckedCreateWithoutUserInput>
+  }
+
+  export type SubmissionsCreateManyUserInputEnvelope = {
+    data: SubmissionsCreateManyUserInput | SubmissionsCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SubmissionsUpsertWithWhereUniqueWithoutUserInput = {
+    where: SubmissionsWhereUniqueInput
+    update: XOR<SubmissionsUpdateWithoutUserInput, SubmissionsUncheckedUpdateWithoutUserInput>
+    create: XOR<SubmissionsCreateWithoutUserInput, SubmissionsUncheckedCreateWithoutUserInput>
+  }
+
+  export type SubmissionsUpdateWithWhereUniqueWithoutUserInput = {
+    where: SubmissionsWhereUniqueInput
+    data: XOR<SubmissionsUpdateWithoutUserInput, SubmissionsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SubmissionsUpdateManyWithWhereWithoutUserInput = {
+    where: SubmissionsScalarWhereInput
+    data: XOR<SubmissionsUpdateManyMutationInput, SubmissionsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SubmissionsScalarWhereInput = {
+    AND?: SubmissionsScalarWhereInput | SubmissionsScalarWhereInput[]
+    OR?: SubmissionsScalarWhereInput[]
+    NOT?: SubmissionsScalarWhereInput | SubmissionsScalarWhereInput[]
+    id?: IntFilter<"Submissions"> | number
+    itemType?: StringFilter<"Submissions"> | string
+    userId?: IntFilter<"Submissions"> | number
+    adminId?: IntNullableFilter<"Submissions"> | number | null
+    status?: StringFilter<"Submissions"> | string
+    submittedAt?: DateTimeFilter<"Submissions"> | Date | string
+  }
+
+  export type SubmissionsCreateWithoutAdminInput = {
+    itemType: string
+    status?: string
+    submittedAt?: Date | string
+    user: UsersCreateNestedOneWithoutSubmissionInput
+  }
+
+  export type SubmissionsUncheckedCreateWithoutAdminInput = {
+    id?: number
+    itemType: string
+    userId: number
+    status?: string
+    submittedAt?: Date | string
+  }
+
+  export type SubmissionsCreateOrConnectWithoutAdminInput = {
+    where: SubmissionsWhereUniqueInput
+    create: XOR<SubmissionsCreateWithoutAdminInput, SubmissionsUncheckedCreateWithoutAdminInput>
+  }
+
+  export type SubmissionsCreateManyAdminInputEnvelope = {
+    data: SubmissionsCreateManyAdminInput | SubmissionsCreateManyAdminInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SubmissionsUpsertWithWhereUniqueWithoutAdminInput = {
+    where: SubmissionsWhereUniqueInput
+    update: XOR<SubmissionsUpdateWithoutAdminInput, SubmissionsUncheckedUpdateWithoutAdminInput>
+    create: XOR<SubmissionsCreateWithoutAdminInput, SubmissionsUncheckedCreateWithoutAdminInput>
+  }
+
+  export type SubmissionsUpdateWithWhereUniqueWithoutAdminInput = {
+    where: SubmissionsWhereUniqueInput
+    data: XOR<SubmissionsUpdateWithoutAdminInput, SubmissionsUncheckedUpdateWithoutAdminInput>
+  }
+
+  export type SubmissionsUpdateManyWithWhereWithoutAdminInput = {
+    where: SubmissionsScalarWhereInput
+    data: XOR<SubmissionsUpdateManyMutationInput, SubmissionsUncheckedUpdateManyWithoutAdminInput>
+  }
+
+  export type UsersCreateWithoutSubmissionInput = {
+    name: string
+    email: string
+    password: string
+    eco_points?: number
+  }
+
+  export type UsersUncheckedCreateWithoutSubmissionInput = {
+    id?: number
+    name: string
+    email: string
+    password: string
+    eco_points?: number
+  }
+
+  export type UsersCreateOrConnectWithoutSubmissionInput = {
+    where: UsersWhereUniqueInput
+    create: XOR<UsersCreateWithoutSubmissionInput, UsersUncheckedCreateWithoutSubmissionInput>
+  }
+
+  export type AdminCreateWithoutSubmissionsInput = {
+    name: string
+    email: string
+    password: string
+  }
+
+  export type AdminUncheckedCreateWithoutSubmissionsInput = {
+    id?: number
+    name: string
+    email: string
+    password: string
+  }
+
+  export type AdminCreateOrConnectWithoutSubmissionsInput = {
+    where: AdminWhereUniqueInput
+    create: XOR<AdminCreateWithoutSubmissionsInput, AdminUncheckedCreateWithoutSubmissionsInput>
+  }
+
+  export type UsersUpsertWithoutSubmissionInput = {
+    update: XOR<UsersUpdateWithoutSubmissionInput, UsersUncheckedUpdateWithoutSubmissionInput>
+    create: XOR<UsersCreateWithoutSubmissionInput, UsersUncheckedCreateWithoutSubmissionInput>
+    where?: UsersWhereInput
+  }
+
+  export type UsersUpdateToOneWithWhereWithoutSubmissionInput = {
+    where?: UsersWhereInput
+    data: XOR<UsersUpdateWithoutSubmissionInput, UsersUncheckedUpdateWithoutSubmissionInput>
+  }
+
+  export type UsersUpdateWithoutSubmissionInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    eco_points?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UsersUncheckedUpdateWithoutSubmissionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    eco_points?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type AdminUpsertWithoutSubmissionsInput = {
+    update: XOR<AdminUpdateWithoutSubmissionsInput, AdminUncheckedUpdateWithoutSubmissionsInput>
+    create: XOR<AdminCreateWithoutSubmissionsInput, AdminUncheckedCreateWithoutSubmissionsInput>
+    where?: AdminWhereInput
+  }
+
+  export type AdminUpdateToOneWithWhereWithoutSubmissionsInput = {
+    where?: AdminWhereInput
+    data: XOR<AdminUpdateWithoutSubmissionsInput, AdminUncheckedUpdateWithoutSubmissionsInput>
+  }
+
+  export type AdminUpdateWithoutSubmissionsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AdminUncheckedUpdateWithoutSubmissionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubmissionsCreateManyUserInput = {
+    id?: number
+    itemType: string
+    adminId?: number | null
+    status?: string
+    submittedAt?: Date | string
+  }
+
+  export type SubmissionsUpdateWithoutUserInput = {
+    itemType?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    admin?: AdminUpdateOneWithoutSubmissionsNestedInput
+  }
+
+  export type SubmissionsUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    itemType?: StringFieldUpdateOperationsInput | string
+    adminId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubmissionsUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    itemType?: StringFieldUpdateOperationsInput | string
+    adminId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubmissionsCreateManyAdminInput = {
+    id?: number
+    itemType: string
+    userId: number
+    status?: string
+    submittedAt?: Date | string
+  }
+
+  export type SubmissionsUpdateWithoutAdminInput = {
+    itemType?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UsersUpdateOneRequiredWithoutSubmissionNestedInput
+  }
+
+  export type SubmissionsUncheckedUpdateWithoutAdminInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    itemType?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubmissionsUncheckedUpdateManyWithoutAdminInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    itemType?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

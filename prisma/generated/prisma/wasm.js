@@ -124,7 +124,8 @@ exports.Prisma.UsersScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
-  password: 'password'
+  password: 'password',
+  eco_points: 'eco_points'
 };
 
 exports.Prisma.AdminScalarFieldEnum = {
@@ -132,6 +133,15 @@ exports.Prisma.AdminScalarFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password'
+};
+
+exports.Prisma.SubmissionsScalarFieldEnum = {
+  id: 'id',
+  itemType: 'itemType',
+  userId: 'userId',
+  adminId: 'adminId',
+  status: 'status',
+  submittedAt: 'submittedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -144,10 +154,16 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
   Users: 'Users',
-  Admin: 'Admin'
+  Admin: 'Admin',
+  Submissions: 'Submissions'
 };
 
 /**
