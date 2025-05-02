@@ -138,6 +138,9 @@ exports.Prisma.AdminScalarFieldEnum = {
 exports.Prisma.SubmissionsScalarFieldEnum = {
   id: 'id',
   itemType: 'itemType',
+  itemBrand: 'itemBrand',
+  itemCondition: 'itemCondition',
+  itemImage: 'itemImage',
   userId: 'userId',
   adminId: 'adminId',
   status: 'status',

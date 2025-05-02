@@ -26,12 +26,15 @@ model Admin {
 }
 
 model Submissions {
-  id          Int      @id @default(autoincrement())
-  itemType    String
-  userId      Int
-  adminId     Int?
-  status      String   @default("pending")
-  submittedAt DateTime @default(now())
+  id            Int      @id @default(autoincrement())
+  itemType      String
+  itemBrand     String
+  itemCondition String
+  itemImage     String
+  userId        Int
+  adminId       Int?
+  status        String   @default("pending")
+  submittedAt   DateTime @default(now())
 
   user  Users  @relation(fields: [userId], references: [id])
   admin Admin? @relation("AdminAssignments", fields: [adminId], references: [id])

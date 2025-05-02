@@ -3339,6 +3339,9 @@ export namespace Prisma {
   export type SubmissionsMinAggregateOutputType = {
     id: number | null
     itemType: string | null
+    itemBrand: string | null
+    itemCondition: string | null
+    itemImage: string | null
     userId: number | null
     adminId: number | null
     status: string | null
@@ -3348,6 +3351,9 @@ export namespace Prisma {
   export type SubmissionsMaxAggregateOutputType = {
     id: number | null
     itemType: string | null
+    itemBrand: string | null
+    itemCondition: string | null
+    itemImage: string | null
     userId: number | null
     adminId: number | null
     status: string | null
@@ -3357,6 +3363,9 @@ export namespace Prisma {
   export type SubmissionsCountAggregateOutputType = {
     id: number
     itemType: number
+    itemBrand: number
+    itemCondition: number
+    itemImage: number
     userId: number
     adminId: number
     status: number
@@ -3380,6 +3389,9 @@ export namespace Prisma {
   export type SubmissionsMinAggregateInputType = {
     id?: true
     itemType?: true
+    itemBrand?: true
+    itemCondition?: true
+    itemImage?: true
     userId?: true
     adminId?: true
     status?: true
@@ -3389,6 +3401,9 @@ export namespace Prisma {
   export type SubmissionsMaxAggregateInputType = {
     id?: true
     itemType?: true
+    itemBrand?: true
+    itemCondition?: true
+    itemImage?: true
     userId?: true
     adminId?: true
     status?: true
@@ -3398,6 +3413,9 @@ export namespace Prisma {
   export type SubmissionsCountAggregateInputType = {
     id?: true
     itemType?: true
+    itemBrand?: true
+    itemCondition?: true
+    itemImage?: true
     userId?: true
     adminId?: true
     status?: true
@@ -3494,6 +3512,9 @@ export namespace Prisma {
   export type SubmissionsGroupByOutputType = {
     id: number
     itemType: string
+    itemBrand: string
+    itemCondition: string
+    itemImage: string
     userId: number
     adminId: number | null
     status: string
@@ -3522,6 +3543,9 @@ export namespace Prisma {
   export type SubmissionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     itemType?: boolean
+    itemBrand?: boolean
+    itemCondition?: boolean
+    itemImage?: boolean
     userId?: boolean
     adminId?: boolean
     status?: boolean
@@ -3533,6 +3557,9 @@ export namespace Prisma {
   export type SubmissionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     itemType?: boolean
+    itemBrand?: boolean
+    itemCondition?: boolean
+    itemImage?: boolean
     userId?: boolean
     adminId?: boolean
     status?: boolean
@@ -3544,6 +3571,9 @@ export namespace Prisma {
   export type SubmissionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     itemType?: boolean
+    itemBrand?: boolean
+    itemCondition?: boolean
+    itemImage?: boolean
     userId?: boolean
     adminId?: boolean
     status?: boolean
@@ -3555,13 +3585,16 @@ export namespace Prisma {
   export type SubmissionsSelectScalar = {
     id?: boolean
     itemType?: boolean
+    itemBrand?: boolean
+    itemCondition?: boolean
+    itemImage?: boolean
     userId?: boolean
     adminId?: boolean
     status?: boolean
     submittedAt?: boolean
   }
 
-  export type SubmissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "itemType" | "userId" | "adminId" | "status" | "submittedAt", ExtArgs["result"]["submissions"]>
+  export type SubmissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "itemType" | "itemBrand" | "itemCondition" | "itemImage" | "userId" | "adminId" | "status" | "submittedAt", ExtArgs["result"]["submissions"]>
   export type SubmissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     admin?: boolean | Submissions$adminArgs<ExtArgs>
@@ -3584,6 +3617,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       itemType: string
+      itemBrand: string
+      itemCondition: string
+      itemImage: string
       userId: number
       adminId: number | null
       status: string
@@ -4015,6 +4051,9 @@ export namespace Prisma {
   interface SubmissionsFieldRefs {
     readonly id: FieldRef<"Submissions", 'Int'>
     readonly itemType: FieldRef<"Submissions", 'String'>
+    readonly itemBrand: FieldRef<"Submissions", 'String'>
+    readonly itemCondition: FieldRef<"Submissions", 'String'>
+    readonly itemImage: FieldRef<"Submissions", 'String'>
     readonly userId: FieldRef<"Submissions", 'Int'>
     readonly adminId: FieldRef<"Submissions", 'Int'>
     readonly status: FieldRef<"Submissions", 'String'>
@@ -4490,6 +4529,9 @@ export namespace Prisma {
   export const SubmissionsScalarFieldEnum: {
     id: 'id',
     itemType: 'itemType',
+    itemBrand: 'itemBrand',
+    itemCondition: 'itemCondition',
+    itemImage: 'itemImage',
     userId: 'userId',
     adminId: 'adminId',
     status: 'status',
@@ -4702,6 +4744,9 @@ export namespace Prisma {
     NOT?: SubmissionsWhereInput | SubmissionsWhereInput[]
     id?: IntFilter<"Submissions"> | number
     itemType?: StringFilter<"Submissions"> | string
+    itemBrand?: StringFilter<"Submissions"> | string
+    itemCondition?: StringFilter<"Submissions"> | string
+    itemImage?: StringFilter<"Submissions"> | string
     userId?: IntFilter<"Submissions"> | number
     adminId?: IntNullableFilter<"Submissions"> | number | null
     status?: StringFilter<"Submissions"> | string
@@ -4713,6 +4758,9 @@ export namespace Prisma {
   export type SubmissionsOrderByWithRelationInput = {
     id?: SortOrder
     itemType?: SortOrder
+    itemBrand?: SortOrder
+    itemCondition?: SortOrder
+    itemImage?: SortOrder
     userId?: SortOrder
     adminId?: SortOrderInput | SortOrder
     status?: SortOrder
@@ -4727,6 +4775,9 @@ export namespace Prisma {
     OR?: SubmissionsWhereInput[]
     NOT?: SubmissionsWhereInput | SubmissionsWhereInput[]
     itemType?: StringFilter<"Submissions"> | string
+    itemBrand?: StringFilter<"Submissions"> | string
+    itemCondition?: StringFilter<"Submissions"> | string
+    itemImage?: StringFilter<"Submissions"> | string
     userId?: IntFilter<"Submissions"> | number
     adminId?: IntNullableFilter<"Submissions"> | number | null
     status?: StringFilter<"Submissions"> | string
@@ -4738,6 +4789,9 @@ export namespace Prisma {
   export type SubmissionsOrderByWithAggregationInput = {
     id?: SortOrder
     itemType?: SortOrder
+    itemBrand?: SortOrder
+    itemCondition?: SortOrder
+    itemImage?: SortOrder
     userId?: SortOrder
     adminId?: SortOrderInput | SortOrder
     status?: SortOrder
@@ -4755,6 +4809,9 @@ export namespace Prisma {
     NOT?: SubmissionsScalarWhereWithAggregatesInput | SubmissionsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Submissions"> | number
     itemType?: StringWithAggregatesFilter<"Submissions"> | string
+    itemBrand?: StringWithAggregatesFilter<"Submissions"> | string
+    itemCondition?: StringWithAggregatesFilter<"Submissions"> | string
+    itemImage?: StringWithAggregatesFilter<"Submissions"> | string
     userId?: IntWithAggregatesFilter<"Submissions"> | number
     adminId?: IntNullableWithAggregatesFilter<"Submissions"> | number | null
     status?: StringWithAggregatesFilter<"Submissions"> | string
@@ -4870,6 +4927,9 @@ export namespace Prisma {
 
   export type SubmissionsCreateInput = {
     itemType: string
+    itemBrand: string
+    itemCondition: string
+    itemImage: string
     status?: string
     submittedAt?: Date | string
     user: UsersCreateNestedOneWithoutSubmissionInput
@@ -4879,6 +4939,9 @@ export namespace Prisma {
   export type SubmissionsUncheckedCreateInput = {
     id?: number
     itemType: string
+    itemBrand: string
+    itemCondition: string
+    itemImage: string
     userId: number
     adminId?: number | null
     status?: string
@@ -4887,6 +4950,9 @@ export namespace Prisma {
 
   export type SubmissionsUpdateInput = {
     itemType?: StringFieldUpdateOperationsInput | string
+    itemBrand?: StringFieldUpdateOperationsInput | string
+    itemCondition?: StringFieldUpdateOperationsInput | string
+    itemImage?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutSubmissionNestedInput
@@ -4896,6 +4962,9 @@ export namespace Prisma {
   export type SubmissionsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     itemType?: StringFieldUpdateOperationsInput | string
+    itemBrand?: StringFieldUpdateOperationsInput | string
+    itemCondition?: StringFieldUpdateOperationsInput | string
+    itemImage?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     adminId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
@@ -4905,6 +4974,9 @@ export namespace Prisma {
   export type SubmissionsCreateManyInput = {
     id?: number
     itemType: string
+    itemBrand: string
+    itemCondition: string
+    itemImage: string
     userId: number
     adminId?: number | null
     status?: string
@@ -4913,6 +4985,9 @@ export namespace Prisma {
 
   export type SubmissionsUpdateManyMutationInput = {
     itemType?: StringFieldUpdateOperationsInput | string
+    itemBrand?: StringFieldUpdateOperationsInput | string
+    itemCondition?: StringFieldUpdateOperationsInput | string
+    itemImage?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4920,6 +4995,9 @@ export namespace Prisma {
   export type SubmissionsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     itemType?: StringFieldUpdateOperationsInput | string
+    itemBrand?: StringFieldUpdateOperationsInput | string
+    itemCondition?: StringFieldUpdateOperationsInput | string
+    itemImage?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     adminId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
@@ -5099,6 +5177,9 @@ export namespace Prisma {
   export type SubmissionsCountOrderByAggregateInput = {
     id?: SortOrder
     itemType?: SortOrder
+    itemBrand?: SortOrder
+    itemCondition?: SortOrder
+    itemImage?: SortOrder
     userId?: SortOrder
     adminId?: SortOrder
     status?: SortOrder
@@ -5114,6 +5195,9 @@ export namespace Prisma {
   export type SubmissionsMaxOrderByAggregateInput = {
     id?: SortOrder
     itemType?: SortOrder
+    itemBrand?: SortOrder
+    itemCondition?: SortOrder
+    itemImage?: SortOrder
     userId?: SortOrder
     adminId?: SortOrder
     status?: SortOrder
@@ -5123,6 +5207,9 @@ export namespace Prisma {
   export type SubmissionsMinOrderByAggregateInput = {
     id?: SortOrder
     itemType?: SortOrder
+    itemBrand?: SortOrder
+    itemCondition?: SortOrder
+    itemImage?: SortOrder
     userId?: SortOrder
     adminId?: SortOrder
     status?: SortOrder
@@ -5437,6 +5524,9 @@ export namespace Prisma {
 
   export type SubmissionsCreateWithoutUserInput = {
     itemType: string
+    itemBrand: string
+    itemCondition: string
+    itemImage: string
     status?: string
     submittedAt?: Date | string
     admin?: AdminCreateNestedOneWithoutSubmissionsInput
@@ -5445,6 +5535,9 @@ export namespace Prisma {
   export type SubmissionsUncheckedCreateWithoutUserInput = {
     id?: number
     itemType: string
+    itemBrand: string
+    itemCondition: string
+    itemImage: string
     adminId?: number | null
     status?: string
     submittedAt?: Date | string
@@ -5482,6 +5575,9 @@ export namespace Prisma {
     NOT?: SubmissionsScalarWhereInput | SubmissionsScalarWhereInput[]
     id?: IntFilter<"Submissions"> | number
     itemType?: StringFilter<"Submissions"> | string
+    itemBrand?: StringFilter<"Submissions"> | string
+    itemCondition?: StringFilter<"Submissions"> | string
+    itemImage?: StringFilter<"Submissions"> | string
     userId?: IntFilter<"Submissions"> | number
     adminId?: IntNullableFilter<"Submissions"> | number | null
     status?: StringFilter<"Submissions"> | string
@@ -5490,6 +5586,9 @@ export namespace Prisma {
 
   export type SubmissionsCreateWithoutAdminInput = {
     itemType: string
+    itemBrand: string
+    itemCondition: string
+    itemImage: string
     status?: string
     submittedAt?: Date | string
     user: UsersCreateNestedOneWithoutSubmissionInput
@@ -5498,6 +5597,9 @@ export namespace Prisma {
   export type SubmissionsUncheckedCreateWithoutAdminInput = {
     id?: number
     itemType: string
+    itemBrand: string
+    itemCondition: string
+    itemImage: string
     userId: number
     status?: string
     submittedAt?: Date | string
@@ -5620,6 +5722,9 @@ export namespace Prisma {
   export type SubmissionsCreateManyUserInput = {
     id?: number
     itemType: string
+    itemBrand: string
+    itemCondition: string
+    itemImage: string
     adminId?: number | null
     status?: string
     submittedAt?: Date | string
@@ -5627,6 +5732,9 @@ export namespace Prisma {
 
   export type SubmissionsUpdateWithoutUserInput = {
     itemType?: StringFieldUpdateOperationsInput | string
+    itemBrand?: StringFieldUpdateOperationsInput | string
+    itemCondition?: StringFieldUpdateOperationsInput | string
+    itemImage?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: AdminUpdateOneWithoutSubmissionsNestedInput
@@ -5635,6 +5743,9 @@ export namespace Prisma {
   export type SubmissionsUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     itemType?: StringFieldUpdateOperationsInput | string
+    itemBrand?: StringFieldUpdateOperationsInput | string
+    itemCondition?: StringFieldUpdateOperationsInput | string
+    itemImage?: StringFieldUpdateOperationsInput | string
     adminId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5643,6 +5754,9 @@ export namespace Prisma {
   export type SubmissionsUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     itemType?: StringFieldUpdateOperationsInput | string
+    itemBrand?: StringFieldUpdateOperationsInput | string
+    itemCondition?: StringFieldUpdateOperationsInput | string
+    itemImage?: StringFieldUpdateOperationsInput | string
     adminId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5651,6 +5765,9 @@ export namespace Prisma {
   export type SubmissionsCreateManyAdminInput = {
     id?: number
     itemType: string
+    itemBrand: string
+    itemCondition: string
+    itemImage: string
     userId: number
     status?: string
     submittedAt?: Date | string
@@ -5658,6 +5775,9 @@ export namespace Prisma {
 
   export type SubmissionsUpdateWithoutAdminInput = {
     itemType?: StringFieldUpdateOperationsInput | string
+    itemBrand?: StringFieldUpdateOperationsInput | string
+    itemCondition?: StringFieldUpdateOperationsInput | string
+    itemImage?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutSubmissionNestedInput
@@ -5666,6 +5786,9 @@ export namespace Prisma {
   export type SubmissionsUncheckedUpdateWithoutAdminInput = {
     id?: IntFieldUpdateOperationsInput | number
     itemType?: StringFieldUpdateOperationsInput | string
+    itemBrand?: StringFieldUpdateOperationsInput | string
+    itemCondition?: StringFieldUpdateOperationsInput | string
+    itemImage?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5674,6 +5797,9 @@ export namespace Prisma {
   export type SubmissionsUncheckedUpdateManyWithoutAdminInput = {
     id?: IntFieldUpdateOperationsInput | number
     itemType?: StringFieldUpdateOperationsInput | string
+    itemBrand?: StringFieldUpdateOperationsInput | string
+    itemCondition?: StringFieldUpdateOperationsInput | string
+    itemImage?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
