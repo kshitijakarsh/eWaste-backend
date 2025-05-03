@@ -7,32 +7,30 @@ export const submitProduct = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { itemType, itemBrand, itemCondition, itemImage } = req.body;
-    const userId = (req as any).user.id;
+    const { itemType, itemBrand, itemCondition } = req.body;
+    const userId = (req as any).user?.id;
+
+    const files = req.files as Express.Multer.File[];
+    const imageUrls = files?.map((file: any) => file.path);
 
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
-    if (!itemType || !itemBrand || !itemCondition || !itemImage) {
-      return res.status(400).json({ message: "All fields are required" });
+    if (!itemType || !itemBrand || !itemCondition || !imageUrls?.length) {
+      return res.status(400).json({ message: "All fields and at least one image are required" });
     }
 
     const earnedPoints = calculateEcoPoints(itemBrand, itemCondition);
 
-    const user = await prisma.Users.findUnique({
-      where: { id: userId },
-    });
-
+    const user = await prisma.Users.findUnique({ where: { id: userId } });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
     const updatedUser = await prisma.Users.update({
       where: { id: userId },
-      data: {
-        eco_points: user.eco_points + earnedPoints,
-      },
+      data: { eco_points: user.eco_points + earnedPoints },
     });
 
     const admin = await prisma.admin.findFirst({
@@ -55,7 +53,7 @@ export const submitProduct = async (
         itemType,
         itemBrand,
         itemCondition,
-        itemImage,
+        itemImage: imageUrls[0],
         userId,
         adminId: admin.id,
       },
@@ -70,11 +68,13 @@ export const submitProduct = async (
         ecoPoints: updatedUser.eco_points,
       },
     });
+
   } catch (error) {
     console.error("Error in submitProduct:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
 
 export const getUserSubmissions = async (req: Request, res: Response) : Promise<any> => {
