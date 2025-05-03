@@ -87,12 +87,6 @@ export const loginUser = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-// export const logoutUser = (req: Request, res: Response) => {
-//   res.json({ message: "Logged out successfully" });
-// };
-
-
-
 export const registerAdmin = async (req: Request, res: Response): Promise<any> => {
   try {
     const { name, email, password } = req.body;
@@ -176,7 +170,3 @@ export const loginAdmin = async (req: Request, res: Response): Promise<any> => {
       .json({ message: error.message || "Error logging in" });
   }
 };
-
-// export const logoutUser = (req: Request, res: Response) => {
-//   res.json({ message: "Logged out successfully" });
-// };
