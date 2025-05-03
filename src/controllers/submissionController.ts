@@ -75,8 +75,6 @@ export const submitProduct = async (
   }
 };
 
-
-
 export const getUserSubmissions = async (req: Request, res: Response) : Promise<any> => {
   try{
     const userId = (req as any).user.id;
