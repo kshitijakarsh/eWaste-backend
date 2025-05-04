@@ -1,5 +1,6 @@
 "use client";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import {
   CircleCheckBig,
   CircleDollarSign,
@@ -212,7 +213,7 @@ export default function Home() {
           How Points Work
         </h1>
 
-        <div className="w-full max-w-7xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto mb-20">
           <div className="w-full grid grid-cols-3 gap-6 px-10">
             <div className="col-span-1 mt-6 h-3/4 bg-white border p-6 rounded-lg shadow-md">
               <h2 className="text-xl text-center font-semibold text-black mb-4">
@@ -287,7 +288,7 @@ export default function Home() {
                   <div className="mt-6 bg-white border rounded-lg shadow-md">
                     <img src="./image.png" alt="Device" />
                   </div>
-                  <div className="p-2">
+                  <div className="p-10">
                     <h1 className="text-black text-2xl">iPhone 11</h1>
                     <p className="text-black text-sm">
                       2 years old, good condition
@@ -336,6 +337,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

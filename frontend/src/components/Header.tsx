@@ -10,7 +10,7 @@ export default function Header() {
           EcoTech
         </Link>
         <nav>
-          <ul className="flex space-x-6 text-black font-semibold">
+          <ul className="flex space-x-6 text-black text-lg font-regular">
             <li>
               <Link href="/" className="hover:text-green-600 transition">
                 home
