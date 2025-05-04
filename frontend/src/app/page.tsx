@@ -1,6 +1,14 @@
 "use client";
 import Header from "@/components/Header";
-import { CircleDollarSign, Clock, Globe, MoveRight, Shield, Users } from "lucide-react";
+import {
+  CircleCheckBig,
+  CircleDollarSign,
+  Clock,
+  Globe,
+  MoveRight,
+  Shield,
+  Users,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Smartphone, Recycle, BadgeCheck, ShoppingBag } from "lucide-react";
 
@@ -13,7 +21,7 @@ export default function Home() {
       <main className="flex-grow grid grid-cols-2 gap-4 items-center px-10 py-50 animate-blur-in">
         <div>
           <h1 className="text-5xl font-semibold text-black leading-snug">
-            Turn <span className="text-green-600 font-bold">eWaste</span> into{" "}
+            Turn <span className="text-green-600 font-bold">EcoTech</span> into{" "}
             <span className="text-yellow-500 font-bold">Rewards</span> & Save
             the Planet
           </h1>
@@ -119,12 +127,12 @@ export default function Home() {
       <section className="flex-grow grid grid-cols-2 gap-6 items-center px-10 py-40">
         <div className="m-10 p-10 max-w-7xl mx-auto px-10">
           <h1 className="text-black text-6xl text-center font-bold">
-            Benefits of using eWaste
+            Benefits of using EcoTech
           </h1>
         </div>
 
         <div className="flex flex-col space-y-4">
-        <div className="mb-2 flex items-start gap-4 p-6 hover:shadow-md border rounded-lg">
+          <div className="mb-2 flex items-start gap-4 p-6 hover:shadow-md border rounded-lg">
             <div className="bg-green-200 rounded-full w-16 h-16 flex items-center justify-center">
               <Globe className="text-green-500 text-xl" />
             </div>
@@ -194,6 +202,136 @@ export default function Home() {
                 Easy scheduling and hassle-free pick-up or drop-off options to
                 fit your schedule.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-green-100">
+        <h1 className="text-black text-6xl text-center font-bold mb-8 mt-8">
+          How Points Work
+        </h1>
+
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="w-full grid grid-cols-3 gap-6 px-10">
+            <div className="col-span-1 mt-6 h-3/4 bg-white border p-6 rounded-lg shadow-md">
+              <h2 className="text-xl text-center font-semibold text-black mb-4">
+                Point Valuation
+              </h2>
+              <p className="text-black text-center mb-4">
+                Points are calculated based on several factors:
+              </p>
+
+              <div className="space-y-4 text-black">
+                <div className="flex gap-4 items-start">
+                  <div className="bg-green-200 rounded-full w-10 h-10 flex items-center justify-center">
+                    <CircleCheckBig className="text-green-500 text-xl" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg">Device Age</h3>
+                    <p className="text-sm text-black">
+                      Newer devices are worth more points
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="bg-green-200 rounded-full w-10 h-10 flex items-center justify-center">
+                    <CircleCheckBig className="text-green-500 text-xl" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg">Condition</h3>
+                    <p>Working devices earn more than damaged ones</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="bg-green-200 rounded-full w-10 h-10 flex items-center justify-center">
+                    <CircleCheckBig className="text-green-500 text-xl" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg">Market Value</h3>
+                    <p>Higher value devices yield more points</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="bg-green-200 rounded-full w-10 h-10 flex items-center justify-center">
+                    <CircleCheckBig className="text-green-500 text-xl" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg">
+                      Environmental Impact
+                    </h3>
+                    <p>Devices with toxic components earn bonus points</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-span-2 w-full">
+              <div className="mt-6 bg-white border p-6 rounded-lg shadow-md">
+                <h1 className="text-black">Points Value By Device Type</h1>
+                <div className="mt-6 flex gap-4">
+                  <div className="border p-4 rounded-lg w-3xl">
+                    <h1 className="text-black text-center">Smartphone</h1>
+                    <p className="text-green-600 text-center">200-500 points</p>
+                  </div>
+                  <div className="border p-4 rounded-lg w-3xl">
+                    <h1 className="text-black text-center">Laptop</h1>
+                    <p className="text-green-600 text-center">
+                      500-1500 points
+                    </p>
+                  </div>
+                </div>
+                <hr className="mt-6" />
+                <h3 className="text-black mt-4 font-semibold">Example</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-10">
+                  <div className="mt-6 bg-white border rounded-lg shadow-md">
+                    <img src="./image.png" alt="Device" />
+                  </div>
+                  <div className="p-2">
+                    <h1 className="text-black text-2xl">iPhone 11</h1>
+                    <p className="text-black text-sm">
+                      2 years old, good condition
+                    </p>
+
+                    <hr className="mt-2" />
+
+                    <div className="flex justify-between mt-4">
+                      <h1 className="text-sm font-semibold text-black">
+                        Base Value
+                      </h1>
+                      <h1 className="text-sm font-semibold text-black">
+                        500 points
+                      </h1>
+                    </div>
+                    <div className="flex justify-between mt-4">
+                      <h1 className="text-sm font-semibold text-black">
+                        Condition bonus:{" "}
+                      </h1>
+                      <h1 className="text-sm font-semibold text-black">
+                        +150 points
+                      </h1>
+                    </div>
+                    <div className="flex justify-between mt-4">
+                      <h1 className="text-sm font-semibold text-black">
+                        Age adjustment:
+                      </h1>
+                      <h1 className="text-sm font-semibold text-black">
+                        -50 points
+                      </h1>
+                    </div>
+
+                    <hr className="mt-2" />
+                    <div className="flex justify-between mt-4">
+                      <h1 className="text-sm font-semibold text-black">
+                        Total:
+                      </h1>
+                      <h1 className="text-sm font-semibold text-black">
+                        600 points
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
