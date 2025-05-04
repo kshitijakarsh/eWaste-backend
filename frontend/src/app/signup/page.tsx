@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { bricolage } from "../layout";
 import Header from "@/components/Header";
+import Link from "next/link";
 
 export default function Login() {
   const router = useRouter();
@@ -11,10 +12,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
   const handleName = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
-  }
+    setName(e.target.value);
+  };
 
   const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -44,9 +44,16 @@ export default function Login() {
       <Header />
       <div className="h-screen w-full flex items-center justify-center animate-blur-in">
         <div className="p-8 pt-12 pb-12 rounded-lg shadow-lg w-full max-w-md border-2 border-gray-600">
-
-          <h2 className="text-2xl text-green-600 mb-6 text-center">SignUp</h2>
-
+          <h2 className="text-2xl text-green-600 text-center">SignUp</h2>
+          <p className="text-l text-black text-center mb-6">
+            {" "}
+            already have an account{" "}
+            <span className="text-blue-400">
+              <Link href="/login" className="hover:text-green-600 transition">
+                login
+              </Link>
+            </span>
+          </p>
 
           <input
             type="name"

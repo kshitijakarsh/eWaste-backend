@@ -1,6 +1,6 @@
 "use client";
 import Header from "@/components/Header";
-import { MoveRight } from "lucide-react";
+import { CircleDollarSign, Clock, Globe, MoveRight, Shield, Users } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Smartphone, Recycle, BadgeCheck, ShoppingBag } from "lucide-react";
 
@@ -68,7 +68,9 @@ export default function Home() {
               <div className="bg-blue-200 rounded-full w-16 h-16 flex items-center justify-center">
                 <Smartphone className="text-blue-500 text-xl" />
               </div>
-              <h1 className="mt-2 text-xl text-black text-center">Register your device</h1>
+              <h1 className="mt-2 text-xl text-black text-center">
+                Register your device
+              </h1>
               <p className="text-black text-center">
                 Sign up and register your old electronic devices on our
                 platform.
@@ -91,7 +93,9 @@ export default function Home() {
               <div className="bg-orange-200 rounded-full w-16 h-16 flex items-center justify-center">
                 <BadgeCheck className="text-orange-500 text-xl" />
               </div>
-              <h1 className="mt-2 text-xl text-black text-center">Earn Points</h1>
+              <h1 className="mt-2 text-xl text-black text-center">
+                Earn Points
+              </h1>
               <p className="text-black text-center">
                 Get points based on the condition and value of your recycled
                 devices.
@@ -101,9 +105,94 @@ export default function Home() {
               <div className="bg-purple-200 rounded-full w-16 h-16 flex items-center justify-center">
                 <ShoppingBag className="text-purple-500 text-xl" />
               </div>
-              <h1 className="mt-2 text-xl text-black text-center">Redeem Rewards</h1>
+              <h1 className="mt-2 text-xl text-black text-center">
+                Redeem Rewards
+              </h1>
               <p className="text-black text-center">
                 Use your earned points to purchase new eco-friendly products.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="flex-grow grid grid-cols-2 gap-6 items-center px-10 py-40">
+        <div className="m-10 p-10 max-w-7xl mx-auto px-10">
+          <h1 className="text-black text-6xl text-center font-bold">
+            Benefits of using eWaste
+          </h1>
+        </div>
+
+        <div className="flex flex-col space-y-4">
+        <div className="mb-2 flex items-start gap-4 p-6 hover:shadow-md border rounded-lg">
+            <div className="bg-green-200 rounded-full w-16 h-16 flex items-center justify-center">
+              <Globe className="text-green-500 text-xl" />
+            </div>
+            <div>
+              <h1 className="text-black text-xl font-semibold mb-1">
+                Environmental Impact
+              </h1>
+              <p className="text-black text-sm">
+                Reduce electronic waste in landfills and minimize toxic
+                materials in our environment.
+              </p>
+            </div>
+          </div>
+          <div className="mb-2 flex items-start gap-4 p-6 hover:shadow-md border rounded-lg">
+            <div className="bg-blue-200 rounded-full w-16 h-16 flex items-center justify-center">
+              <Shield className="text-blue-500 text-xl" />
+            </div>
+            <div>
+              <h1 className="text-black text-xl font-semibold mb-1">
+                Data Security
+              </h1>
+              <p className="text-black text-sm">
+                Professional wiping of all data from your devices before
+                recycling, ensuring privacy.
+              </p>
+            </div>
+          </div>
+          <div className="mb-2 flex items-start gap-4 p-6 hover:shadow-md border rounded-lg">
+            <div className="bg-orange-200 rounded-full w-16 h-16 flex items-center justify-center">
+              <CircleDollarSign className="text-orange-500 text-xl" />
+            </div>
+            <div>
+              <h1 className="text-black text-xl font-semibold mb-1">
+                Earn Points
+              </h1>
+              <p className="text-black text-sm">
+                Get rewarded for your contribution with points that convert to
+                real value.
+              </p>
+            </div>
+          </div>
+
+          <div className="mb-2 flex items-start gap-4 p-6 hover:shadow-md border rounded-lg">
+            <div className="bg-purple-200 rounded-full w-16 h-16 flex items-center justify-center">
+              <Users className="text-purple-500 text-xl" />
+            </div>
+            <div>
+              <h1 className="text-black text-xl font-semibold mb-1">
+                Community Building
+              </h1>
+              <p className="text-black text-sm">
+                Join a growing community of environmentally conscious
+                individuals making a difference.
+              </p>
+            </div>
+          </div>
+
+          <div className="mb-2 flex items-start gap-4 p-6 hover:shadow-md border rounded-lg">
+            <div className="bg-green-200 rounded-full w-16 h-16 flex items-center justify-center">
+              <Clock className="text-green-500 text-xl" />
+            </div>
+            <div>
+              <h1 className="text-black text-xl font-semibold mb-1">
+                Convenient Process
+              </h1>
+              <p className="text-black text-sm">
+                Easy scheduling and hassle-free pick-up or drop-off options to
+                fit your schedule.
               </p>
             </div>
           </div>

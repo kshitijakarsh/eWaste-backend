@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { bricolage } from "../layout";
 import Header from "@/components/Header";
+import Link from "next/link";
 
 export default function Login() {
   const router = useRouter();
@@ -38,7 +39,16 @@ export default function Login() {
       <div className="h-screen w-full flex items-center justify-center animate-blur-in ">
         <div className="p-8 pt-12 pb-12 rounded-lg shadow-lg w-full max-w-md border-2 border-gray-600">
 
-          <h2 className="text-2xl text-green-600 mb-6 text-center">Login</h2>
+          <h2 className="text-2xl text-green-600 text-center">Login</h2>
+          <p className="text-l text-black text-center mb-6">
+            {" "}
+            create an account? {" "}
+            <span className="text-blue-400">
+              <Link href="/signup" className="hover:text-green-600 transition">
+                signup
+              </Link>
+            </span>
+          </p>
 
           <input
             type="email"

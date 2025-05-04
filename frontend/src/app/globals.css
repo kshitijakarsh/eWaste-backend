@@ -45,7 +45,7 @@ body {
 
 
 .animate-blur-in {
-  animation: blurScaleIn 0.8s ease-out forwards;
+  animation: blurScaleIn 0.5s ease-out forwards;
 }
 
 @keyframes fontGrow {
