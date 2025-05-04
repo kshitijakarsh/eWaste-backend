@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="w-full shadow-md fixed top-0 z-50 font-[bricolage]">
+    <header className="w-full shadow-md fixed top-0 z-50 font-[bricolage] bg-white">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="text-xl font-bold text-green-800">
           eWaste
