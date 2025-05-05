@@ -5,6 +5,7 @@ import axios from "axios";
 import { Package, Upload } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface Submission {
   id: string;
@@ -28,6 +29,7 @@ export default function UserDashboard() {
   const [type, setType] = useState("");
   const [brand, setBrand] = useState("");
   const [submissions, setSubmissions] = useState<Submission[]>([]);
+  const router = useRouter();
 
   const handleFile = (file: File) => {
     if (file && file.type.startsWith("image/")) {
@@ -103,7 +105,7 @@ export default function UserDashboard() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      console.error("No token found. Please log in.");
+      router.push('/login')
       return;
     }
 

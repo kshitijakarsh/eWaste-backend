@@ -3,6 +3,7 @@
 import Header from "@/components/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 interface Submission {
   id: number;
@@ -20,6 +21,7 @@ interface Submission {
 }
 
 export default function AdminDashboard() {
+  const router = useRouter()
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
   const [points, setPoints] = useState<Record<number, string>>({});
@@ -28,7 +30,7 @@ export default function AdminDashboard() {
     const fetchSubmissions = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        setLoading(false);
+        router.push('/login')
         return;
       }
 
@@ -50,7 +52,7 @@ export default function AdminDashboard() {
     };
 
     fetchSubmissions();
-  }, []);
+  }, [router]);
 
   const handleStatusChange = async (
     submissionId: number,
@@ -61,7 +63,7 @@ export default function AdminDashboard() {
 
     try {
       const res = await axios.patch(
-        "http://localhost:8000/admin/update-status",
+        "http://localhost:8000/admin/update",
         {
           submissionId,
           status: newStatus,

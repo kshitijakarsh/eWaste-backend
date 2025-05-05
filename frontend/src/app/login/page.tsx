@@ -36,10 +36,12 @@ export default function Login() {
           password,
         });
         if (response) {
-          const token = response.data.token
-          localStorage.setItem("token", token)
+          const token = response.data.token;
+          localStorage.setItem("token", token);
           const id = response.data.user.id;
           router.push(`/dashboard/admin/${id}`);
+        } else {
+          router.push("/login");
         }
       } else {
         const response = await axios.post("http://localhost:8000/user/login", {
@@ -47,10 +49,12 @@ export default function Login() {
           password,
         });
         if (response) {
-          const token = response.data.token
-          localStorage.setItem("token", token)
+          const token = response.data.token;
+          localStorage.setItem("token", token);
           const id = response.data.user.id;
           router.push(`/dashboard/user/${id}`);
+        } else {
+          router.push("/login");
         }
       }
     } catch (error) {
