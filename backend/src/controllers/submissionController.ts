@@ -77,8 +77,9 @@ export const submitProduct = async (
 
 export const getUserSubmissions = async (req: Request, res: Response) : Promise<any> => {
   try{
+    console.log("request received");
+    
     const userId = (req as any).user.id;
-    console.log(userId);
     
     if(!userId){
       return res.status(401).json({ message : "Unauthorized" });
@@ -89,7 +90,7 @@ export const getUserSubmissions = async (req: Request, res: Response) : Promise<
         userId
       }
     })
-
+    
     res.status(201).json({
       message : "Fetching Successful",
       submissions

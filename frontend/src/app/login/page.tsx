@@ -37,7 +37,10 @@ export default function Login() {
           password,
         });
         if (response) {
-          router.push("/");
+          const token = response.data.token
+          localStorage.setItem("token", token)
+          const id = response.data.user.id;
+          router.push(`/dashboard/user/${id}`);
         }
       } else {
         const response = await axios.post("http://localhost:8000/user/login", {
@@ -45,7 +48,10 @@ export default function Login() {
           password,
         });
         if (response) {
-          router.push("/");
+          const token = response.data.token
+          localStorage.setItem("token", token)
+          const id = response.data.user.id;
+          router.push(`/dashboard/user/${id}`);
         }
       }
     } catch (error) {
