@@ -2,7 +2,6 @@
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { bricolage } from "../layout";
 import Header from "@/components/Header";
 import Link from "next/link";
 
@@ -40,7 +39,7 @@ export default function Login() {
           const token = response.data.token
           localStorage.setItem("token", token)
           const id = response.data.user.id;
-          router.push(`/dashboard/user/${id}`);
+          router.push(`/dashboard/admin/${id}`);
         }
       } else {
         const response = await axios.post("http://localhost:8000/user/login", {

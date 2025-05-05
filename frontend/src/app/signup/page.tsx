@@ -2,7 +2,6 @@
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { bricolage } from "../layout";
 import Header from "@/components/Header";
 import Link from "next/link";
 

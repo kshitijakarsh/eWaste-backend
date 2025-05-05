@@ -9,7 +9,7 @@ const router = express.Router();
 router.post("/register", register);
 router.post("/login", loginUser);
 router.post("/delete", authenticateUser, deleteUser)
-router.post("/update", authenticateUser, updateUser)
+router.patch("/update", authenticateUser, updateUser)
 router.get("/details", authenticateUser, userDetails)
 
 

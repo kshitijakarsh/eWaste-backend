@@ -100,3 +100,35 @@ export const getUserSubmissions = async (req: Request, res: Response) : Promise<
     res.status(500).json({ message : "Internal Server Error "})
   }
 }
+
+export const updateSubmission = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { submissionId, status } = req.body;
+
+    if (!submissionId || !status) {
+      return res.status(400).json({ message: "Submission ID and status are required" });
+    }
+
+    const existingSubmission = await prisma.submissions.findUnique({
+      where: { id: submissionId },
+    });
+
+    if (!existingSubmission) {
+      return res.status(404).json({ message: "Submission not found" });
+    }
+
+    const updatedSubmission = await prisma.submissions.update({
+      where: { id: submissionId },
+      data: { status },
+    });
+
+    res.status(200).json({
+      message: "Submission status updated successfully",
+      updatedSubmission,
+    });
+
+  } catch (error) {
+    console.error("Error in updateSubmission:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};

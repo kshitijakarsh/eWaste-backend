@@ -9,7 +9,7 @@ router.post("/register", registerAdmin);
 router.post("/login", loginAdmin)
 router.get("/details", authenticateAdmin, adminDetails)
 router.get("/jobs", authenticateAdmin, adminJobs)
-router.post("/update", authenticateAdmin, updateAdmin)
+router.patch("/update", authenticateAdmin, updateAdmin)
 router.post("/delete", authenticateAdmin, deleteAdmin)
 
 export default router;
