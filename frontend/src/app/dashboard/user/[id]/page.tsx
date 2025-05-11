@@ -144,7 +144,6 @@ export default function UserDashboard() {
       <Header />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 pt-20 p-6">
-        {/* Left: Submissions */}
         <div className="col-span-1 h-auto">
           <div className="bg-white p-6 rounded-xl shadow-md">
             <div className="flex gap-4 items-center mb-4">
@@ -194,7 +193,6 @@ export default function UserDashboard() {
           </div>
         </div>
 
-        {/* Right: Submit a Device */}
         <div className="bg-white p-6 rounded-2xl shadow h-fit">
           <div className="flex gap-4 items-center">
             <div className="bg-green-200 rounded-full w-10 h-10 flex items-center justify-center">
@@ -204,7 +202,6 @@ export default function UserDashboard() {
           </div>
 
           <div className="mt-4">
-            {/* Device Type */}
             <div className="p-4">
               <h1 className="text-black mb-2">Device Type</h1>
               <input
@@ -216,7 +213,6 @@ export default function UserDashboard() {
               />
             </div>
 
-            {/* Brand */}
             <div className="p-4">
               <h1 className="text-black mb-2">Brand</h1>
               <input
@@ -228,7 +224,6 @@ export default function UserDashboard() {
               />
             </div>
 
-            {/* Condition Dropdown */}
             <div className="relative p-4">
               <h1 className="text-black mb-2">Condition</h1>
               <button
@@ -279,7 +274,6 @@ export default function UserDashboard() {
               )}
             </div>
 
-            {/* Image Upload */}
             <div className="mt-6 p-4">
               <h1 className="text-black">Upload Image</h1>
               <div
@@ -322,7 +316,6 @@ export default function UserDashboard() {
               </div>
             </div>
 
-            {/* Submit Button */}
             <div className="p-4">
               <button
                 onClick={Submit}

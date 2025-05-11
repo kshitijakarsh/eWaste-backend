@@ -3,9 +3,10 @@
 import Header from "@/components/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface Submission {
+  points: number;
   id: number;
   itemType: string;
   itemBrand: string;
@@ -20,17 +21,47 @@ interface Submission {
   };
 }
 
+const statusOptions = ["Pending", "In Review", "Approved", "Rejected"];
+
 export default function AdminDashboard() {
-  const router = useRouter()
+  const router = useRouter();
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
   const [points, setPoints] = useState<Record<number, string>>({});
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [ecoPoint, setEcoPoints] = useState(0);
+  const [status, setStatus] = useState<Record<number, string>>({});
+
+  useEffect(() => {
+    const fetchAdminDetails = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      try {
+        const res = await axios.get("http://localhost:8000/admin/details", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setName(res.data.admin.name);
+        setEmail(res.data.admin.email);
+      } catch (err) {
+        console.error("Error fetching submissions:", err);
+      }
+    };
+
+    fetchAdminDetails();
+  }, [router]);
 
   useEffect(() => {
     const fetchSubmissions = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        router.push('/login')
+        router.push("/login");
         return;
       }
 
@@ -43,6 +74,14 @@ export default function AdminDashboard() {
 
         if (res.data.submissions) {
           setSubmissions(res.data.submissions);
+
+          const initialStatus: { [key: string]: string } = {};
+          res.data.submissions.forEach(
+            (submission: { id: string | number; status: any }) => {
+              initialStatus[submission.id] = submission.status;
+            }
+          );
+          setStatus(initialStatus);
         }
       } catch (err) {
         console.error("Error fetching submissions:", err);
@@ -54,19 +93,19 @@ export default function AdminDashboard() {
     fetchSubmissions();
   }, [router]);
 
-  const handleStatusChange = async (
-    submissionId: number,
-    newStatus: string
-  ) => {
+  const handleStatusChange = async (submissionId: number) => {
     const token = localStorage.getItem("token");
     if (!token) return;
 
+    const newStatus = status[submissionId];
+    if (!newStatus) return;
+
     try {
       const res = await axios.patch(
-        "http://localhost:8000/admin/update",
+        "http://localhost:8000/admin/updateStatus",
         {
           submissionId,
-          status: newStatus,
+          newStatus,
         },
         {
           headers: {
@@ -75,15 +114,18 @@ export default function AdminDashboard() {
         }
       );
 
-      if (res.data.updatedSubmission) {
+      if (res.status === 200) {
+        // Update the local state to reflect the change
         setSubmissions((prev) =>
           prev.map((s) =>
-            s.id === submissionId ? res.data.updatedSubmission : s
+            s.id === submissionId ? { ...s, status: newStatus } : s
           )
         );
+        alert("Status updated successfully!");
       }
     } catch (error) {
       console.error("Failed to update status", error);
+      alert("Failed to update status. Please try again.");
     }
   };
 
@@ -98,11 +140,11 @@ export default function AdminDashboard() {
     if (!token || !amount) return;
 
     try {
-      await axios.post(
-        "http://localhost:8000/admin/award-points",
+      await axios.patch(
+        "http://localhost:8000/admin/award",
         {
           submissionId,
-          points: Number(amount),
+          ecoPoint: Number(amount),
         },
         {
           headers: {
@@ -118,6 +160,28 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      const res = await axios.post("http://localhost:8000/admin/delete", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res) {
+        router.push("/delete");
+      }
+    } catch (err) {
+      console.log("Error found while deleting account : ", err);
+    }
+  };
+
   return (
     <div className="min-h-screen pt-24 bg-gray-100">
       <Header />
@@ -128,90 +192,127 @@ export default function AdminDashboard() {
         </h1>
 
         {loading ? (
-          <p className="text-gray-600 text-lg">Loading submissions...</p>
+          <p className="text-lg">Loading submissions...</p>
         ) : submissions.length === 0 ? (
-          <p className="text-gray-600 text-lg">No submissions assigned yet.</p>
+          <p className="text-lg">No submissions assigned yet.</p>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {submissions.map((sub) => (
-              <div
-                key={sub.id}
-                className="col-span-1 lg:col-span-2 lg:col-start-2 bg-white rounded-2xl shadow hover:shadow-lg transition duration-200 p-4 flex flex-row gap-4"
-              >
-                {/* Image on the left */}
-                <img
-                  src={sub.itemImage}
-                  alt={`${sub.itemBrand} ${sub.itemType}`}
-                  className="w-48 h-48 object-cover rounded-xl"
-                />
+          <div className="grid grid-cols-3 gap-6 p-6 w-full max-w-7xl">
+            <div className="w-full sm:w-[300px] md:w-[320px] lg:w-[350px] xl:w-[400px] min-w-[280px] max-w-[400px] flex-none bg-white border-solid border-4 border-green-800 text-black rounded-2xl col-span-1 shadow-xl">
+              <h1 className="text-center text-2xl mt-4 font-semibold">
+                Admin Details
+              </h1>
+              <div className="flex justify-center">
+                <hr className="w-3/4 border-t border-green-800 my-2" />
+              </div>
 
-                {/* Details on the right */}
-                <div className="flex-grow flex flex-col justify-between">
-                  <div>
-                    <h2 className="text-xl font-semibold text-green-700 mb-1">
-                      {sub.itemBrand} {sub.itemType}
-                    </h2>
-                    <p className="text-gray-800 mb-1">
-                      <strong>Condition:</strong> {sub.itemCondition}
-                    </p>
+              <p className="bg-white mt-8 mx-4 border border-gray-400 p-2 rounded-2xl shadow-lg">
+                Name : {name}
+              </p>
+              <p className="bg-white mt-2 mx-4 border border-gray-400 p-2 rounded-2xl shadow-lg">
+                Email : {email}
+              </p>
 
-                    {/* Status Dropdown */}
-                    <div className="mb-2">
-                      <label className="block text-sm font-medium text-gray-700">
-                        Status
-                      </label>
-                      <select
-                        value={sub.status}
-                        onChange={(e) =>
-                          handleStatusChange(sub.id, e.target.value)
-                        }
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
-                      >
-                        <option value="pending">Pending</option>
-                        <option value="collected">Collected</option>
-                        <option value="rejected">Rejected</option>
-                      </select>
+              <div className="flex flex-wrap justify-center gap-4 p-4 mt-4">
+                <button
+                  className="bg-white p-2 rounded-2xl border border-green-300 shadow-lg hover:drop-shadow-xl"
+                  onClick={handleDelete}
+                >
+                  Delete Account
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-white border-2 rounded-2xl col-span-2 p-6 shadow-xl">
+              {submissions.map((submission) => {
+                const currentStatus =
+                  status[submission.id] || submission.status;
+                return (
+                  <div
+                    key={submission.id}
+                    className="flex flex-col md:flex-row border rounded-xl p-4 mb-6 hover:shadow-md transition-shadow bg-white"
+                  >
+                    <div className="w-full md:w-1/4 mb-4 md:mb-0">
+                      <img
+                        src={submission.itemImage}
+                        alt={submission.itemType}
+                        className="w-full h-40 object-cover rounded-xl"
+                      />
                     </div>
 
-                    {/* Points Award Input */}
-                    <div className="mt-3">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Award Points
-                      </label>
-                      <div className="flex items-center gap-2">
+                    <div className="w-full md:w-1/2 px-4 flex flex-col justify-center mb-4 md:mb-0">
+                      <div className="grid grid-cols-1 gap-3">
+                        <div>
+                          <h3 className="text-gray-500 text-sm">Type</h3>
+                          <p className="text-xl font-semibold text-black">
+                            {submission.itemType}
+                          </p>
+                        </div>
+                        <div>
+                          <h3 className="text-gray-500 text-sm">Brand</h3>
+                          <p className="text-xl font-semibold text-black">
+                            {submission.itemBrand}
+                          </p>
+                        </div>
+                        <div>
+                          <h3 className="text-gray-500 text-sm">Condition</h3>
+                          <p className="text-xl font-semibold text-black">
+                            {submission.itemCondition}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="w-full md:w-1/4 border-t md:border-t-0 md:border-l pt-4 md:pt-0 md:pl-4 flex flex-col justify-center space-y-4">
+                      <div>
+                        <h3 className="text-black text-sm mb-2">Status</h3>
+                        <select
+                          className="w-full p-2 rounded-lg border border-green-800 text-black"
+                          value={currentStatus}
+                          onChange={(e) =>
+                            setStatus((prev) => ({
+                              ...prev,
+                              [submission.id]: e.target.value,
+                            }))
+                          }
+                        >
+                          {statusOptions.map((statusOption) => (
+                            <option key={statusOption} value={statusOption}>
+                              {statusOption}
+                            </option>
+                          ))}
+                        </select>
+
+                        <button
+                          onClick={() => handleStatusChange(submission.id)}
+                          className="mt-2 w-full bg-green-800 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors"
+                        >
+                          Update Status
+                        </button>
+                      </div>
+
+                      <div>
+                        <h3 className="text-black text-sm mb-2">Points</h3>
                         <input
                           type="number"
-                          placeholder="Points"
-                          value={points[sub.id] || ""}
+                          value={points[submission.id] || ""}
                           onChange={(e) =>
-                            handlePointsInput(sub.id, e.target.value)
+                            handlePointsInput(submission.id, e.target.value)
                           }
-                          className="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+                          className="w-full p-2 rounded-lg border border-green-800 text-black"
                         />
+
                         <button
-                          onClick={() => awardPoints(sub.id)}
-                          className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md text-sm"
+                          onClick={() => awardPoints(submission.id)}
+                          className="mt-2 w-full bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors"
                         >
-                          Award
+                          Award Points
                         </button>
                       </div>
                     </div>
                   </div>
-
-                  {/* Footer Info */}
-                  <div className="mt-4 text-sm text-gray-600">
-                    <p>
-                      <strong>Submitted by:</strong> {sub.user.name} (
-                      {sub.user.email})
-                    </p>
-                    <p>
-                      <strong>Submitted at:</strong>{" "}
-                      {new Date(sub.submittedAt).toLocaleString()}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
