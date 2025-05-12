@@ -25,7 +25,7 @@ const upload = multer({
 });
 
 export const uploadImages = (req: Request, res: Response, next: NextFunction): void => {
-  const uploadHandler = upload.array('images', 5);
+  const uploadHandler = upload.array('images', 1);
 
   uploadHandler(req, res, (err: any) => {
     if (err instanceof multer.MulterError) {

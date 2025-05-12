@@ -73,20 +73,20 @@ export default function UserDashboard() {
     }
 
     const formData = new FormData();
-    formData.append("type", type);
-    formData.append("brand", brand);
-    formData.append("condition", condition);
-    formData.append("image", image);
+    formData.append("itemType", type);
+    formData.append("itemBrand", brand);
+    formData.append("itemCondition", condition);
+    formData.append("images", image);
 
     try {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       const response = await axios.post(
         "http://localhost:8000/product/submit",
         formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
+            // "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -107,7 +107,7 @@ export default function UserDashboard() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      router.push('/login')
+      router.push("/login");
       return;
     }
 
@@ -120,7 +120,7 @@ export default function UserDashboard() {
           },
         }
       );
-      
+
       const submissionsData = response.data.submissions.map((sub: any) => ({
         id: sub.id,
         itemType: sub.itemType,

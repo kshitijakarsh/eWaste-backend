@@ -23,12 +23,12 @@ export const submitProduct = async (
 
     const earnedPoints = calculateEcoPoints(itemBrand, itemCondition);
 
-    const user = await prisma.Users.findUnique({ where: { id: userId } });
+    const user = await prisma.users.findUnique({ where: { id: userId } });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const updatedUser = await prisma.Users.update({
+    const updatedUser = await prisma.users.update({
       where: { id: userId },
       data: { eco_points: user.eco_points + earnedPoints },
     });

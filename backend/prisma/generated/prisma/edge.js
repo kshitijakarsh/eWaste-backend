@@ -151,7 +151,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/kshitijakarsh/Developer/e-waste/prisma/generated/prisma",
+      "value": "/Users/anuj846k/Developer/Code/eWaste/backend/prisma/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -165,12 +165,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/kshitijakarsh/Developer/e-waste/prisma/schema.prisma",
+    "sourceFilePath": "/Users/anuj846k/Developer/Code/eWaste/backend/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../..",
   "clientVersion": "6.7.0",
@@ -179,7 +178,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
