@@ -3,7 +3,6 @@
 import axios from "axios";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import router from "next/navigation";
 import { useState, useEffect } from "react";
 
 export default function Header() {
@@ -11,7 +10,6 @@ export default function Header() {
   const params = useParams();
   const id = params?.id;
   const [logged, setLogged] = useState(false);
-  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -20,36 +18,36 @@ export default function Header() {
     }
   }, []);
 
-  useEffect(() => {
-    async function checkAdmin() {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        router.push("/login");
-        return;
-      }
-
-      try {
-        const res = await axios.get("http://localhost:8000/admin/details", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (res) {
-          setAdmin(true);
-        }
-      } catch (error) {
-        console.log("Error found while checking for admin : ", error);
-      }
+  const handleDashboard = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/home");
+      return;
     }
 
-    checkAdmin();
-  }, []);
+    try {
+      const res = await axios.get("http://localhost:8000/admin/details", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  function handleLogOut() {
+      if (res?.data?.admin === true) {
+        router.push(`/dashboard/admin/${id}`);
+      } else {
+        router.push(`/dashboard/user/${id}`);
+      }
+    } catch (error) {
+      console.error("Error while checking admin status:", error);
+      router.push(`/dashboard/user/${id}`);
+    }
+  };
+
+  const handleLogOut = () => {
     localStorage.clear();
     setLogged(false);
-  }
+    router.push("/login");
+  };
 
   return (
     <header className="w-full shadow-md fixed top-0 z-50 font-[bricolage] bg-white">
@@ -58,36 +56,27 @@ export default function Header() {
           EcoTech
         </Link>
         <nav>
-          <ul className="flex space-x-6 text-black text-lg font-regular">
+          <ul className="flex space-x-6 text-black text-lg font-regular items-center">
             <li>
-              <Link href="/" className="hover:text-green-600 transition mr-6">
+              <Link href="/" className="hover:text-green-600 transition">
                 home
               </Link>
+            </li>
+            <li>
               <Link href="/about" className="hover:text-green-600 transition">
                 about
               </Link>
             </li>
             {logged ? (
               <>
-                {admin ? (
-                  <li>
-                    <Link
-                      href={`/dashboard/user/${id}`}
-                      className="hover:text-green-600 transition"
-                    >
-                      dashboard
-                    </Link>
-                  </li>
-                ) : (
-                  <li>
-                    <Link
-                      href={`/dashboard/admin/${id}`}
-                      className="hover:text-green-600 transition"
-                    >
-                      dashboard
-                    </Link>
-                  </li>
-                )}
+                <li>
+                  <button
+                    onClick={handleDashboard}
+                    className="hover:text-green-600 transition"
+                  >
+                    dashboard
+                  </button>
+                </li>
                 <li>
                   <button
                     onClick={handleLogOut}
