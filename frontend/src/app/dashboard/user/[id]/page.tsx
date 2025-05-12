@@ -79,11 +79,13 @@ export default function UserDashboard() {
     formData.append("image", image);
 
     try {
+      const token = localStorage.getItem("token")
       const response = await axios.post(
         "http://localhost:8000/product/submit",
         formData,
         {
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }
